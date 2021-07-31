@@ -108,12 +108,10 @@
 								<div class="row">
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">어제</p>
-										<%-- <p class="text-muted mb-0"><fmt:formatDate value="${date1}" pattern="MM월 dd일" /></p> --%>
 										<h4 class="mb-1"><fmt:formatNumber value="${alist[1].ADecideCnt}" pattern="#,###,###" /> 명</h4>
 									</div>
 									<div class="col-6 text-center">
 										<p class="text-muted mb-0">오늘</p>
-										<%-- <p class="text-muted mb-0"><fmt:formatDate value="${date0}" pattern="MM월 dd일" /></p> --%>
 										<h4 class="mb-1"><fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</h4>
 										${alist[0].ADecideCnt-alist[1].ADecideCnt}명&nbsp;&nbsp;
 										<c:if test="${(adecPer-100) > 0}"><span class="small text-success">+</span></c:if>

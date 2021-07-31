@@ -33,7 +33,7 @@
   </head>
 
 
-  <body class="vertical  light  ">
+  <body class="vertical light">
     <div class="wrapper">
       <nav class="topnav navbar navbar-light">
         <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
@@ -73,22 +73,26 @@
                 <i class="fe fe-home fe-16"></i>
                 <span class="ml-3 item-text">일별/누적 확진자</span>
               </a>
-            </li><li class="nav-item w-100">
+            </li>
+            <li class="nav-item w-100">
               <a class="nav-link" href="/asa">
                 <i class="fe fe-layers fe-16"></i>
                 <span class="ml-3 item-text">지역/성별/연령별 확진자</span>
               </a>
-            </li><li class="nav-item w-100">
+            </li>
+            <li class="nav-item w-100">
               <a class="nav-link" href="/hospital">
                 <i class="fe fe-flag fe-16"></i>
                 <span class="ml-3 item-text">선별진료소</span>
               </a>
-            </li><li class="nav-item w-100">
+            </li>
+            <li class="nav-item w-100">
               <a class="nav-link" href="/vaccine/vac">
                 <i class="fe fe-map fe-16"></i>
                 <span class="ml-3 item-text">예방접종 의료기관</span>
               </a>
-            </li><li class="nav-item w-100">
+            </li>
+            <li class="nav-item w-100">
               <a class="nav-link" href="/beta">
                 <i class="fe fe-activity fe-16"></i>
                 <span class="ml-3 item-text">(BETA) 실시간 확진자</span>
