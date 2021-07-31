@@ -3,6 +3,7 @@ package org.corona.service;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.corona.domain.AreaVO;
 import org.corona.domain.DisasterVO;
 import org.corona.domain.StateVO;
 
@@ -19,6 +20,10 @@ public interface StateService {
 	public ArrayList<StateVO> covidState(String result);
 	// 일자별 변화량 추가
 	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list);
+	
+	// 지역
+	public String getAreaApi(String startCreateDt, String endCreateDt) throws Exception;
+	public ArrayList<AreaVO> asaArea(String result);
 	
 	// Jsoup html parse
 	public void Crawler();

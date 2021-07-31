@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import org.corona.domain.vaccionVO;
+import org.corona.domain.VaccionVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,9 @@ import lombok.AllArgsConstructor;
 public class VaccineServiceImpl implements VaccineService{
 
 	@Override
-	public ArrayList<vaccionVO> vaccionApi(String start, String doo, String dog)throws IOException {
+	public ArrayList<VaccionVO> vaccionApi(String start, String doo, String dog)throws IOException {
 		
-		ArrayList<vaccionVO> list = new ArrayList<vaccionVO>();
+		ArrayList<VaccionVO> list = new ArrayList<VaccionVO>();
 		
 		// URL
 				StringBuilder urlBuilder = new StringBuilder("https://api.odcloud.kr/api/apnmOrg/v1/list");
@@ -74,7 +74,7 @@ public class VaccineServiceImpl implements VaccineService{
 			   
 			    for (int i = 0; i < itemArray.length(); i++) {
 			    	
-			    	vaccionVO svo = new vaccionVO();
+			    	VaccionVO svo = new VaccionVO();
 			    	JSONObject iobj = itemArray.getJSONObject(i);
 			     svo.setOrgcd(iobj.getString("orgcd"));
 			     svo.setOrgnm(iobj.getString("orgnm"));

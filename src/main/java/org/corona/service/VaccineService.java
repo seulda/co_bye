@@ -3,12 +3,12 @@ package org.corona.service;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.corona.domain.vaccionVO;
+import org.corona.domain.VaccionVO;
 
 
 public interface VaccineService {
 
-	ArrayList<vaccionVO> vaccionApi(String start, String doo,String dog) throws IOException;
+	ArrayList<VaccionVO> vaccionApi(String start, String doo,String dog) throws IOException;
 
 
 

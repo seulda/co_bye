@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 @Data
-public class vaccionVO {
+public class VaccionVO {
 	
 	private String orgcd;		// 기관코드
 	private String orgnm;		// 기관명

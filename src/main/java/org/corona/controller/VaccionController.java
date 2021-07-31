@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.corona.domain.vaccionVO;
+import org.corona.domain.VaccionVO;
 import org.corona.service.VaccineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +34,7 @@ public class VaccionController {
 		String doo = request.getParameter("vapdo");
 		String dog = request.getParameter("vapdog");
 		log.info(start);
-		ArrayList<vaccionVO> vlist = service.vaccionApi(start, doo, dog);
+		ArrayList<VaccionVO> vlist = service.vaccionApi(start, doo, dog);
 
 		if (vlist.isEmpty()) { // api 조회 결과가 없을 때 = 항공편 미존재
 			response.setContentType("text/html; charset=UTF-8");
