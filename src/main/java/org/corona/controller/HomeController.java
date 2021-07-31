@@ -19,17 +19,17 @@ public class HomeController {
 //		return "/dailyAll/dashboard";
 //	}
 	
-//	@GetMapping("/dailyAll/dashboard")
-//	public String dashboard() {
-//		return "/dailyAll/dashboard";
-//	}
-	
-//	@GetMapping("/ASA/asa")
+//	@GetMapping("/asa")
 //	public String asa() {
 //		return "/ASA/asa";
 //	}
+
+	@GetMapping("/vaccine/vac")
+	public String vac() {
+		return "/vaccine/vac";
+	}
 	
-	@GetMapping("/hospital/hospital")
+	@GetMapping("/hospital")
 	public String hospital() {
 		return "/hospital/hospital";
 	}

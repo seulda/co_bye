@@ -52,7 +52,7 @@ public class StateController {
 		//service.Crawler();
 		
 		ArrayList<DisasterVO> dlist = service.DisasterMsg(service.getDisasterMsgApi());
-		System.out.println("DisasterMsg dlist: " + dlist);
+		log.info("DisasterMsg dlist: " + dlist);
 		if(dlist.size()==0) {
 			model.addAttribute("n", "n");
 		} else {
