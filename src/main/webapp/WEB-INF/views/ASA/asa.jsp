@@ -55,14 +55,17 @@
 								</c:when>
 							</c:choose>
 						</div>
-						<!-- 그래프 -->
+						
+						
+						<!-- 지역별 확진자 그래프 -->
 						<div class="col-md-12">
 							<h4 style="text-align:center; margin-top:150px; ">지역별 확진자</h4>
 							<div class="chart-box" style="padding:0px 20px;">
 								<div id="columnChart1" style="margin: 20px auto;  text-align: center;"></div>
 							</div>
 						</div>
-						<!-- 지역 리스트 -->
+						
+						<!-- 지역별 확진자 리스트 -->
 						<div class="col-md-12">
 							<h6 class="mb-3" style="text-align:center;">지역 리스트</h6>
 							<table class="table table-borderless table-striped">

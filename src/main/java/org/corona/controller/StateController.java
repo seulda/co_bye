@@ -4,6 +4,7 @@ package org.corona.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.corona.domain.AreaVO;
 import org.corona.domain.DisasterVO;
 import org.corona.domain.StateVO;
 import org.corona.service.StateService;
@@ -30,7 +31,7 @@ public class StateController {
 	
 	
 	@GetMapping("/")
-	public String test(Model model) throws IOException {
+	public String test(Model model) throws Exception {
 		
 		//service.Crawler();
 
@@ -40,6 +41,8 @@ public class StateController {
 		ArrayList<StateVO> alist = service.aCovidState(slist);
 		log.info("aCovidState alist: " + alist);
 		model.addAttribute("alist", alist);
+		ArrayList<AreaVO> arealist = service.asaArea(service.getAreaApi(eDay, eDay));
+		model.addAttribute("arealist", arealist);
 		
 		return "/dailyAll/dashboard";
 	}

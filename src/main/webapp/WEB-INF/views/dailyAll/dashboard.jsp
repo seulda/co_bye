@@ -126,8 +126,8 @@
 					<!-- .col -->
 				</div>
 				<!-- end section -->
-				
-				<br><br><hr>
+								
+				<br><hr>
 				
 				<!-- charts-->
 				<div class="row my-4">
@@ -141,7 +141,45 @@
 				</div>
 				<!-- end section -->
 				
-				<br>
+				<br><br><hr><br>
+				
+				<!-- 지역별 확진자 리스트 -->
+				<div class="col-md-12">
+					<h4 style="text-align:center; margin:30px 0px;">지역별 코로나 확진 현황</h4>
+					<table class="table table-borderless table-striped">
+						<thead>
+							<tr role="row">
+								<th>지역</th>
+								<!-- <th>등록 일시</th> -->
+								<th>추가 확진자</th>
+								<th>누적 확진자</th>
+								<th>격리중</th>
+								<th>격리 해제</th>
+								<th>사망자 수</th>
+								<th>지역 발생</th>
+								<th>해외 유입</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="list" items="${arealist}">
+								<tr>
+									<th scope="col">${list.gubun}</th>
+									<%-- <fmt:parseDate value="${list.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
+									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td> --%>
+									<td>+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
+									<td><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>		<!-- 전체 확진자 / 누적 확진자 -->
+									<td><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>	<!-- 격리중 -->
+									<td><fmt:formatNumber value="${list.isolClearCnt}" pattern="#,###,###" /></td>	<!-- 격리해제 --> 
+									<td><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>		<!-- 사망자 수  -->
+									<td><fmt:formatNumber value="${list.localOccCnt}" pattern="#,###,###" /></td>	<!-- 지역 발생 -->
+									<td><fmt:formatNumber value="${list.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
+				<br><br>
 				
 				<!-- info small box -->
 				<%-- <div class="row">
@@ -311,7 +349,6 @@
 	var dateArea = [], D = [];
 	<c:forEach var="dlist" items="${alist}">
 		var aa = '${dlist.stateDt}';
-		/* var a = aa.substr(4,2) + "/" + aa.substr(6,2) + "/" +  aa.substr(0,4); */
 		var a = aa.substr(4,2) + "월 " + aa.substr(6,2) + "일";
 	    var a1 = '${dlist.ADecideCnt}';
 	    dateArea.push(a);
