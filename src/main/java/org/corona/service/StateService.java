@@ -1,6 +1,7 @@
 package org.corona.service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.corona.domain.AreaVO;
@@ -19,7 +20,7 @@ public interface StateService {
 	// corona 현황 api 응답 데이터
 	public ArrayList<StateVO> covidState(String result);
 	// 일자별 변화량 추가
-	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list);
+	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list) throws ParseException;
 	
 	// 지역
 	public String getAreaApi(String startCreateDt, String endCreateDt) throws Exception;

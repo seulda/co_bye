@@ -96,7 +96,6 @@
 							<div class="card-body">
 								<h3 style="margin:10px 10px 0px 20px;">전일대비 확진자 비교</h3><br>
 								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
-								<fmt:parseDate value="${alist[1].stateDt}" var="date1" pattern="yyyyMMdd" />
 								<p style="text-align:right; margin-right:20px; margin-bottom:10px;">
 									<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
 								<div class="chart-widget" style="margin:10px 0px;">
@@ -126,8 +125,16 @@
 					<!-- .col -->
 				</div>
 				<!-- end section -->
-								
-				<br><hr>
+				
+				
+				<br><hr><br>
+				<div class="col-md-12">
+					<div style="width:65%; overflow:hidden; text-align:center;">
+						<img style="max-width:100%; display:block;" src="${pageContext.request.contextPath}/resources/image/ko.png"/>
+					</div>
+				</div>
+				<br><hr><br>
+				
 				
 				<!-- charts-->
 				<div class="row my-4">
@@ -146,33 +153,35 @@
 				<!-- 지역별 확진자 리스트 -->
 				<div class="col-md-12">
 					<h4 style="text-align:center; margin:30px 0px;">지역별 코로나 확진 현황</h4>
+					<fmt:parseDate value="${arealist[1].createDt}" var="aDate" pattern="yyyy-MM-dd HH:mm:ss" />
+					<p style="text-align:right;">기준일 : <fmt:formatDate value="${aDate}" pattern="MM월 dd일"/></p>
 					<table class="table table-borderless table-striped">
 						<thead>
 							<tr role="row">
-								<th>지역</th>
+								<th style="text-align:center;">지역</th>
 								<!-- <th>등록 일시</th> -->
-								<th>추가 확진자</th>
-								<th>누적 확진자</th>
-								<th>격리중</th>
-								<th>격리 해제</th>
-								<th>사망자 수</th>
-								<th>지역 발생</th>
-								<th>해외 유입</th>
+								<th style="text-align:center;">추가 확진자</th>
+								<th style="text-align:center;">누적 확진자</th>
+								<th style="text-align:center;">격리중</th>
+								<th style="text-align:center;">격리 해제</th>
+								<th style="text-align:center;">사망자 수</th>
+								<th style="text-align:center;">지역 발생</th>
+								<th style="text-align:center;">해외 유입</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="list" items="${arealist}">
 								<tr>
-									<th scope="col">${list.gubun}</th>
+									<th scope="col" style="text-align:center;">${list.gubun}</th>
 									<%-- <fmt:parseDate value="${list.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
 									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td> --%>
-									<td>+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
-									<td><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>		<!-- 전체 확진자 / 누적 확진자 -->
-									<td><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>	<!-- 격리중 -->
-									<td><fmt:formatNumber value="${list.isolClearCnt}" pattern="#,###,###" /></td>	<!-- 격리해제 --> 
-									<td><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>		<!-- 사망자 수  -->
-									<td><fmt:formatNumber value="${list.localOccCnt}" pattern="#,###,###" /></td>	<!-- 지역 발생 -->
-									<td><fmt:formatNumber value="${list.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
+									<td style="text-align:center;">+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>		<!-- 전체 확진자 / 누적 확진자 -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>	<!-- 격리중 -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.isolClearCnt}" pattern="#,###,###" /></td>	<!-- 격리해제 --> 
+									<td style="text-align:center;"><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>		<!-- 사망자 수  -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.localOccCnt}" pattern="#,###,###" /></td>	<!-- 지역 발생 -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -229,22 +238,22 @@
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
-									<th>집계일</th>
-									<th>누적 확진자</th>
-									<th>추가 확진자</th>
-									<th>누적 사망자</th>
-									<th>추가 사망자</th>
+									<th style="text-align:center;">집계일</th>
+									<th style="text-align:center;">누적 확진자</th>
+									<th style="text-align:center;">추가 확진자</th>
+									<th style="text-align:center;">누적 사망자</th>
+									<th style="text-align:center;">추가 사망자</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="list" items="${alist}">
 								<fmt:parseDate value="${list.stateDt}" var="stateDt" pattern="yyyyMMdd" />
 								<tr>
-									<th scope="col"><fmt:formatDate value="${stateDt}" pattern="MM월 dd일" /></th>
-									<td><fmt:formatNumber value="${list.decideCnt}" pattern="#,###,###" /></td>
-									<td>+ <fmt:formatNumber value="${list.ADecideCnt}" pattern="#,###,###" /></td>
-									<td><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>
-									<td>+ <fmt:formatNumber value="${list.ADeathCnt}" pattern="#,###,###" /></td>
+									<th scope="col" style="text-align:center;"><fmt:formatDate value="${stateDt}" pattern="MM월 dd일" /></th>
+									<td style="text-align:center;"><fmt:formatNumber value="${list.decideCnt}" pattern="#,###,###" /></td>
+									<td style="text-align:center;">+ <fmt:formatNumber value="${list.ADecideCnt}" pattern="#,###,###" /></td>
+									<td style="text-align:center;"><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>
+									<td style="text-align:center;">+ <fmt:formatNumber value="${list.ADeathCnt}" pattern="#,###,###" /></td>
 								</tr>
 								</c:forEach>
 							</tbody>
@@ -261,7 +270,8 @@
 </main>
 <!-- main -->
 
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/d3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/korea.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>

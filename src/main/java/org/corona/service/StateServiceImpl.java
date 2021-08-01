@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -148,16 +149,26 @@ public class StateServiceImpl implements StateService {
 	}
 	
 	@Override
-	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list) {
+	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list) throws ParseException {
 		
 		List<StateVO> dayList = new ArrayList<StateVO>();
 		dayList = list.subList(1, list.size());
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		Date date = null;
+		String dt = "";
 		
 		for(int i = 0; i < list.size()-1; i++) {
 			list.get(i).setADecideCnt(list.get(i).getDecideCnt() - dayList.get(i).getDecideCnt());
 			list.get(i).setACareCnt(list.get(i).getCareCnt() - dayList.get(i).getCareCnt());
 			list.get(i).setADeathCnt(list.get(i).getDeathCnt() - dayList.get(i).getDeathCnt());
-			list.get(i).setStateDt(String.valueOf(Integer.parseInt(list.get(i).getStateDt())-1));
+			
+			date = fmt.parse(list.get(i).getStateDt());
+			cal.setTime(date);
+			cal.add(Calendar.DATE, -1);
+			dt = fmt.format(cal.getTime());
+			list.get(i).setStateDt(dt);
 		}
 		list.remove(list.size()-1);
 		

@@ -2,6 +2,7 @@ package org.corona.controller;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.corona.domain.AreaVO;
@@ -48,7 +49,7 @@ public class StateController {
 	}
 	
 	@GetMapping("/beta")
-	public String beta(Model model) throws IOException {
+	public String beta(Model model) throws IOException, ParseException {
 		ArrayList<StateVO> list = service.aCovidState(service.covidState(service.getCovidStateApi(service.day(service.today()), service.today())));
 		model.addAttribute("state", list.get(0).getADecideCnt());
 		
