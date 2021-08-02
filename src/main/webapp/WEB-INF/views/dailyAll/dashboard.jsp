@@ -126,15 +126,38 @@
 				</div>
 				<!-- end section -->
 				
-				
 				<br><hr><br>
+				
+				<!-- korea image start -->
 				<div class="col-md-12">
-					<div style="width:65%; overflow:hidden; text-align:center;">
+					<%-- <div style="width:65%; overflow:hidden; text-align:center; margin:auto;">
 						<img style="max-width:100%; display:block;" src="${pageContext.request.contextPath}/resources/image/ko.png"/>
+					</div> --%>
+					<div style="width:65%; height:1000px; margin:auto; background-image:url(${pageContext.request.contextPath}/resources/image/ko.png); background-size:contain; background-repeat:no-repeat;">
+						<span>${arealist[0].gubun}:${arealist[0].incDec}</span>	<!-- 검역 -->
+						<span>${arealist[1].gubun}:${arealist[1].incDec}</span>	<!-- 제주 -->
+						<span>${arealist[2].gubun}:${arealist[2].incDec}</span>	<!-- 경남 -->
+						<span>${arealist[3].gubun}:${arealist[3].incDec}</span>	<!-- 경북 -->
+						<span>${arealist[4].gubun}:${arealist[4].incDec}</span>	<!-- 전남 -->
+						<span>${arealist[5].gubun}:${arealist[5].incDec}</span>	<!-- 전북 -->
+						<span>${arealist[6].gubun}:${arealist[6].incDec}</span>	<!-- 충남 -->
+						<span>${arealist[7].gubun}:${arealist[7].incDec}</span>	<!-- 충북 -->
+						<span>${arealist[8].gubun}:${arealist[8].incDec}</span>	<!-- 강원 -->
+						<span>${arealist[9].gubun}:${arealist[9].incDec}</span>	<!-- 경기 -->
+						<span>${arealist[10].gubun}:${arealist[10].incDec}</span>	<!-- 세종 -->
+						<span>${arealist[11].gubun}:${arealist[11].incDec}</span>	<!-- 울산 -->
+						<span>${arealist[12].gubun}:${arealist[12].incDec}</span>	<!-- 대전 -->
+						<span>${arealist[13].gubun}:${arealist[13].incDec}</span>	<!-- 광주 -->
+						<span>${arealist[14].gubun}:${arealist[14].incDec}</span>	<!-- 인천 -->
+						<span>${arealist[15].gubun}:${arealist[15].incDec}</span>	<!-- 대구 -->
+						<span>${arealist[16].gubun}:${arealist[16].incDec}</span>	<!-- 부산 -->
+						<span>${arealist[17].gubun}:${arealist[17].incDec}</span>	<!-- 서울 -->
 					</div>
+
 				</div>
-				<br><hr><br>
+				<!-- korea image end -->
 				
+				<br><hr><br>
 				
 				<!-- charts-->
 				<div class="row my-4">
@@ -176,8 +199,8 @@
 									<%-- <fmt:parseDate value="${list.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
 									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td> --%>
 									<td style="text-align:center;">+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>		<!-- 전체 확진자 / 누적 확진자 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>	<!-- 격리중 -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>			<!-- 전체 확진자 / 누적 확진자 -->
+									<td style="text-align:center;"><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>		<!-- 격리중 -->
 									<td style="text-align:center;"><fmt:formatNumber value="${list.isolClearCnt}" pattern="#,###,###" /></td>	<!-- 격리해제 --> 
 									<td style="text-align:center;"><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>		<!-- 사망자 수  -->
 									<td style="text-align:center;"><fmt:formatNumber value="${list.localOccCnt}" pattern="#,###,###" /></td>	<!-- 지역 발생 -->
@@ -270,8 +293,7 @@
 </main>
 <!-- main -->
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/d3.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/korea.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
