@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/kag.css">
 
 
 <main role="main" class="main-content">
@@ -97,7 +98,7 @@
 								<h3 style="margin:10px 10px 0px 20px;">전일대비 확진자 비교</h3><br>
 								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
 								<p style="text-align:right; margin-right:20px; margin-bottom:10px;">
-									<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
+								<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
 								<div class="chart-widget" style="margin:10px 0px;">
 									<div id="gradientRadial"></div>
 								</div><br>
@@ -130,30 +131,31 @@
 				
 				<!-- korea image start -->
 				<div class="col-md-12">
+				<h4 style="text-align:center; margin:30px 0px;">전날 지역별 코로나 확진 현황</h4>
 					<%-- <div style="width:65%; overflow:hidden; text-align:center; margin:auto;">
 						<img style="max-width:100%; display:block;" src="${pageContext.request.contextPath}/resources/image/ko.png"/>
 					</div> --%>
-					<div style="width:65%; height:1000px; margin:auto; background-image:url(${pageContext.request.contextPath}/resources/image/ko.png); background-size:contain; background-repeat:no-repeat;">
-						<span>${arealist[0].gubun}:${arealist[0].incDec}</span>	<!-- 검역 -->
-						<span>${arealist[1].gubun}:${arealist[1].incDec}</span>	<!-- 제주 -->
-						<span>${arealist[2].gubun}:${arealist[2].incDec}</span>	<!-- 경남 -->
-						<span>${arealist[3].gubun}:${arealist[3].incDec}</span>	<!-- 경북 -->
-						<span>${arealist[4].gubun}:${arealist[4].incDec}</span>	<!-- 전남 -->
-						<span>${arealist[5].gubun}:${arealist[5].incDec}</span>	<!-- 전북 -->
-						<span>${arealist[6].gubun}:${arealist[6].incDec}</span>	<!-- 충남 -->
-						<span>${arealist[7].gubun}:${arealist[7].incDec}</span>	<!-- 충북 -->
-						<span>${arealist[8].gubun}:${arealist[8].incDec}</span>	<!-- 강원 -->
-						<span>${arealist[9].gubun}:${arealist[9].incDec}</span>	<!-- 경기 -->
-						<span>${arealist[10].gubun}:${arealist[10].incDec}</span>	<!-- 세종 -->
-						<span>${arealist[11].gubun}:${arealist[11].incDec}</span>	<!-- 울산 -->
-						<span>${arealist[12].gubun}:${arealist[12].incDec}</span>	<!-- 대전 -->
-						<span>${arealist[13].gubun}:${arealist[13].incDec}</span>	<!-- 광주 -->
-						<span>${arealist[14].gubun}:${arealist[14].incDec}</span>	<!-- 인천 -->
-						<span>${arealist[15].gubun}:${arealist[15].incDec}</span>	<!-- 대구 -->
-						<span>${arealist[16].gubun}:${arealist[16].incDec}</span>	<!-- 부산 -->
-						<span>${arealist[17].gubun}:${arealist[17].incDec}</span>	<!-- 서울 -->
+					<div style="position:relative; width:65%; margin:auto;">
+						<span class="koAreaGage" style="left:8%; top:20%;">${arealist[0].gubun}<br>${arealist[0].incDec}</span>	<!-- 검역 -->
+						<span class="koAreaGage" style="left:20%; top:88%;">${arealist[1].gubun}<br>${arealist[1].incDec}</span>	<!-- 제주 -->
+						<span class="koAreaGage" style="left:55%; top:59%;">${arealist[2].gubun}<br>${arealist[2].incDec}</span>	<!-- 경남 -->
+						<span class="koAreaGage" style="left:63%; top:40%;">${arealist[3].gubun}<br>${arealist[3].incDec}</span>	<!-- 경북 -->
+						<span class="koAreaGage" style="left:36%; top:68%;">${arealist[4].gubun}<br>${arealist[4].incDec}</span>	<!-- 전남 -->
+						<span class="koAreaGage" style="left:38%; top:52%;">${arealist[5].gubun}<br>${arealist[5].incDec}</span>	<!-- 전북 -->
+						<span class="koAreaGage" style="left:31%; top:37%;">${arealist[6].gubun}<br>${arealist[6].incDec}</span>	<!-- 충남 -->
+						<span class="koAreaGage" style="left:48%; top:31%;">${arealist[7].gubun}<br>${arealist[7].incDec}</span>	<!-- 충북 -->
+						<span class="koAreaGage" style="left:55%; top:16%;">${arealist[8].gubun}<br>${arealist[8].incDec}</span>	<!-- 강원 -->
+						<span class="koAreaGage" style="left:43%; top:21%;">${arealist[9].gubun}<br>${arealist[9].incDec}</span>	<!-- 경기 -->
+						<span class="koAreaGage" style="left:39%; top:35%;">${arealist[10].gubun}<br>${arealist[10].incDec}</span>	<!-- 세종 -->
+						<span class="koAreaGage" style="left:71%; top:54%;">${arealist[11].gubun}<br>${arealist[11].incDec}</span>	<!-- 울산 -->
+						<span class="koAreaGage" style="left:41%; top:43%;">${arealist[12].gubun}<br>${arealist[12].incDec}</span>	<!-- 대전 -->
+						<span class="koAreaGage" style="left:32%; top:60%;">${arealist[13].gubun}<br>${arealist[13].incDec}</span>	<!-- 광주 -->
+						<span class="koAreaGage" style="left:27%; top:23%;">${arealist[14].gubun}<br>${arealist[14].incDec}</span>	<!-- 인천 -->
+						<span class="koAreaGage" style="left:60%; top:50%;">${arealist[15].gubun}<br>${arealist[15].incDec}</span>	<!-- 대구 -->
+						<span class="koAreaGage" style="left:67%; top:61%;">${arealist[16].gubun}<br>${arealist[16].incDec}</span>	<!-- 부산 -->
+						<span class="koAreaGage" style="left:35%; top:20%;">${arealist[17].gubun}<br>${arealist[17].incDec}</span>	<!-- 서울 -->
+						<div style="width:100%; height:0; padding-top:117%; background-image:url(${pageContext.request.contextPath}/resources/image/ko.png); background-size:contain; background-repeat:no-repeat;"></div>
 					</div>
-
 				</div>
 				<!-- korea image end -->
 				
@@ -171,10 +173,10 @@
 				</div>
 				<!-- end section -->
 				
-				<br><br><hr><br>
+				<!-- <br><br><hr><br> -->
 				
-				<!-- 지역별 확진자 리스트 -->
-				<div class="col-md-12">
+				<!-- 지역별 확진자 리스트 start -->
+				<%-- <div class="col-md-12">
 					<h4 style="text-align:center; margin:30px 0px;">지역별 코로나 확진 현황</h4>
 					<fmt:parseDate value="${arealist[1].createDt}" var="aDate" pattern="yyyy-MM-dd HH:mm:ss" />
 					<p style="text-align:right;">기준일 : <fmt:formatDate value="${aDate}" pattern="MM월 dd일"/></p>
@@ -182,7 +184,6 @@
 						<thead>
 							<tr role="row">
 								<th style="text-align:center;">지역</th>
-								<!-- <th>등록 일시</th> -->
 								<th style="text-align:center;">추가 확진자</th>
 								<th style="text-align:center;">누적 확진자</th>
 								<th style="text-align:center;">격리중</th>
@@ -196,8 +197,6 @@
 							<c:forEach var="list" items="${arealist}">
 								<tr>
 									<th scope="col" style="text-align:center;">${list.gubun}</th>
-									<%-- <fmt:parseDate value="${list.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
-									<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td> --%>
 									<td style="text-align:center;">+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
 									<td style="text-align:center;"><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>			<!-- 전체 확진자 / 누적 확진자 -->
 									<td style="text-align:center;"><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>		<!-- 격리중 -->
@@ -209,7 +208,8 @@
 							</c:forEach>
 						</tbody>
 					</table>
-				</div>
+				</div> --%>
+				<!-- 지역별 확진자 리스트 end -->
 
 				<br><br>
 				
@@ -257,7 +257,7 @@
 				<div class="row">
 					<!-- Recent orders -->
 					<div class="col-md-12">
-						<h4 style="text-align:center; margin:30px 0px;">최근 코로나 누적 확진 현황</h4>
+						<h4 style="text-align:center; margin:30px 0px;">최근 일별 코로나 누적 확진 현황</h4>
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
