@@ -311,7 +311,7 @@ public class StateServiceImpl implements StateService {
                 }
         	}
         }
-		System.out.println("!!!!!!! result count : " + mCnt);
+		System.out.println("!!!!!!! msg count : " + mCnt);
 		return mCnt;
 	}
 	

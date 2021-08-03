@@ -135,8 +135,8 @@
 					<%-- <div style="width:65%; overflow:hidden; text-align:center; margin:auto;">
 						<img style="max-width:100%; display:block;" src="${pageContext.request.contextPath}/resources/image/ko.png"/>
 					</div> --%>
-					<div style="position:relative; width:65%; margin:auto;">
-						<span class="koAreaGage" style="left:8%; top:20%;">${arealist[0].gubun}<br>${arealist[0].incDec}</span>	<!-- 검역 -->
+					<div class="koArea">
+						<span class="koAreaGage" style="left:8%; top:20%;">${arealist[0].gubun}<br>${arealist[0].incDec}</span>		<!-- 검역 -->
 						<span class="koAreaGage" style="left:20%; top:88%;">${arealist[1].gubun}<br>${arealist[1].incDec}</span>	<!-- 제주 -->
 						<span class="koAreaGage" style="left:55%; top:59%;">${arealist[2].gubun}<br>${arealist[2].incDec}</span>	<!-- 경남 -->
 						<span class="koAreaGage" style="left:63%; top:40%;">${arealist[3].gubun}<br>${arealist[3].incDec}</span>	<!-- 경북 -->
@@ -154,7 +154,7 @@
 						<span class="koAreaGage" style="left:60%; top:50%;">${arealist[15].gubun}<br>${arealist[15].incDec}</span>	<!-- 대구 -->
 						<span class="koAreaGage" style="left:67%; top:61%;">${arealist[16].gubun}<br>${arealist[16].incDec}</span>	<!-- 부산 -->
 						<span class="koAreaGage" style="left:35%; top:20%;">${arealist[17].gubun}<br>${arealist[17].incDec}</span>	<!-- 서울 -->
-						<div style="width:100%; height:0; padding-top:117%; background-image:url(${pageContext.request.contextPath}/resources/image/ko.png); background-size:contain; background-repeat:no-repeat;"></div>
+						<div class="koImg"></div>
 					</div>
 				</div>
 				<!-- korea image end -->
