@@ -6,7 +6,7 @@
 <main role="main" class="main-content">
 	<div class="container-fluid">
 		<div class="alert alert-info" role="alert">
-			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제는 전적으로 사용자에게 있습니다.
+			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제는 전적으로 사용자에게 있습니다.
 		</div><br><br>
 		<div class="row justify-content-center">
 			<div class="col-12">
