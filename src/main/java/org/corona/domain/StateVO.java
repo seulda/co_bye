@@ -9,7 +9,6 @@ public class StateVO {
 	private int aCareCnt;		// 치료환자
 	private int aDeathCnt;		// 사망자
 	
-	
 	private int seq;			// 게시글번호(감염현황 고유값)
 	private String stateDt;		// 기준일
 	private String stateTime;	// 기준시간
