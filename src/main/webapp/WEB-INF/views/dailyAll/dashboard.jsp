@@ -24,8 +24,6 @@
 										<div class="col pr-0">
 											<p class="small text-muted mb-0">실시간 추가 확진자</p>
 											<a href="/beta"><span class="h3 mb-0 text-white">&nbsp;BETA SERVICE</span></a>
-											<%-- <span class="h3 mb-0 text-white">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span> --%>
-											<!-- <span class="small text-muted">+5.5%</span> -->
 										</div>
 									</div>
 								</div>
@@ -132,9 +130,6 @@
 				<!-- korea image start -->
 				<div class="col-md-12">
 				<h4 style="text-align:center; margin:30px 0px;">전날 지역별 코로나 확진 현황</h4>
-					<%-- <div style="width:65%; overflow:hidden; text-align:center; margin:auto;">
-						<img style="max-width:100%; display:block;" src="${pageContext.request.contextPath}/resources/image/ko.png"/>
-					</div> --%>
 					<div class="koArea">
 						<span class="koAreaGage" style="left:8%; top:20%;">${arealist[0].gubun}<br>${arealist[0].incDec}</span>		<!-- 검역 -->
 						<span class="koAreaGage" style="left:20%; top:88%;">${arealist[1].gubun}<br>${arealist[1].incDec}</span>	<!-- 제주 -->
@@ -426,7 +421,7 @@
                 enableShades: !1,
                 endingShape: "rounded",
                 dataLabels: {
-					position: 'top', // top, center, bottom
+					position: 'top',
 				},
             }
         },
