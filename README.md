@@ -1,10 +1,11 @@
-<h1 align="center">Welcome to co_bye 👋</h1>
-<p>
-</p>
+# Welcome to co_bye project 👋
 
 > cobye(코로나19 정보 전달 웹사이트) 수정 & 배포 버전
+> 
+> [기존 cobye project](https://github.com/seulda/cobye)
+> 
 
-### ✨ [Demo](http://18.116.116.157:8080/)
+<br>
 
 ## Author
 
@@ -12,7 +13,9 @@
 
 * Github: [@seulda](https://github.com/seulda)
 
-## Show your support
+<br>
 
-Give a ⭐️ if this project helped you!
+## Show Demo
+
+✨ [Demo](http://18.116.116.157:8080/)
 
