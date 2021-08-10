@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 @Controller
 @AllArgsConstructor
 @RequestMapping
@@ -33,10 +34,10 @@ public class VaccionController {
 		String start = request.getParameter("from_place");
 		String doo = request.getParameter("vapdo");
 		String dog = request.getParameter("vapdog");
-		log.info(start);
+
 		ArrayList<VaccionVO> vlist = service.vaccionApi(start, doo, dog);
 
-		if (vlist.isEmpty()) { // api 조회 결과가 없을 때 = 항공편 미존재
+		if (vlist.isEmpty()) { // api 조회 결과가 없을 때
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('해당 검색결과가 없습니다.'); </script>");
@@ -44,9 +45,11 @@ public class VaccionController {
 
 			return "/vaccine/vac";
 		}
+		
 		model.addAttribute("start", start);
 		model.addAttribute("doo", doo);
 		model.addAttribute("vlist", vlist);
+		
 		return "/vaccine/vac2";
 	}
 
@@ -57,8 +60,7 @@ public class VaccionController {
 
 		attr.addFlashAttribute("orgZipaddr", orgZipaddr);
 		attr.addFlashAttribute("orgZipaddr", orgnm);
-		System.out.println("dddddddddddddddddd" + orgZipaddr);
-		System.out.println("ddddddddddddddssssssssss" + orgnm);
+		
 		return "/vaccine/vacmap";
 	}
 

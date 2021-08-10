@@ -10,6 +10,4 @@ public interface VaccineService {
 
 	ArrayList<VaccionVO> vaccionApi(String start, String doo,String dog) throws IOException;
 
-
-
 }
