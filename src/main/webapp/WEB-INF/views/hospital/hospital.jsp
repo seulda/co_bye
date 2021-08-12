@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ include file="../layout/header.jsp"%>
+
 <style>
     .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
     .wrap * {padding: 0;margin: 0;}
@@ -17,6 +17,7 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
 </style>
+
 <main role="main" class="main-content">
 	<div class="alert alert-dark" role="alert">
 		<img height="20" width="20" src="${pageContext.request.contextPath}/resources/image/map-marker-icon_34392.png">&nbsp; 현위치&nbsp; 
@@ -24,10 +25,12 @@
 		<img height="20" width="20" src="${pageContext.request.contextPath}/resources/image/clipart353131.png">&nbsp; 선별진료소
 	</div>
 	<div class="container-fluid">
-			<div id="map" style="width:100%;height:100vh;"></div>
+		<div id="map" style="width:100%;height:100vh;"></div>
+	</div>
+</main>
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
- <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=922ca951b44c6af51770da3a41e90f60&libraries=services,clusterer"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=117b75a9f98a5abd1bdb86600a386134&libraries=services,clusterer"></script>
 
 <script>
 	if (navigator.geolocation) {
@@ -50,6 +53,7 @@
 	        
 		displayMarker(locPosition, message);
 	}
+	
 	function displayMarker(locPosition, message) {
 		
 		var imageSrc = '${pageContext.request.contextPath}/resources/image/map-marker-icon_34392.png', // 마커이미지의 주소입니다    
@@ -336,9 +340,6 @@
 		});
 	}
 </script>
-   </body>
 
-	</div>
-</main>
 
 <%@ include file="../layout/footer.jsp"%>
