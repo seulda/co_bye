@@ -24,5 +24,5 @@
 
 ## Show Demo
 
-✨ [Demo](http://cobye.site:8080/)
+✨ [Demo](https://cobye.site)
 
