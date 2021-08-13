@@ -7,6 +7,13 @@
 
 <br>
 
+## 수정 기능
+
+* Main Page : 지역별 확진자 보기 추가
+* 선별진료소 Page : 지도 오류 수정
+
+<br>
+
 ## Author
 
 👤 **Daseul Kim**
