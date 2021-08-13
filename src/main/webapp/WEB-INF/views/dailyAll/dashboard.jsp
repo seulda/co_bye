@@ -42,7 +42,7 @@
 											<p class="small text-muted mb-0">어제 확진자</p>
 											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;&nbsp;
 											<c:if test="${(alist[0].ADecideCnt-alist[1].ADecideCnt) > 0}"><span class="small text-success">+</span></c:if>
-											<span class="small text-success">${alist[0].ADecideCnt-alist[1].ADecideCnt}명</span>
+											<span class="small text-success"><fmt:formatNumber value="${alist[0].ADecideCnt-alist[1].ADecideCnt}" pattern="#,###,###" />명</span>
 										</div>
 									</div>
 								</div>
@@ -62,7 +62,7 @@
 											<div class="row align-items-center no-gutters">
 												<div class="col-auto">
 													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].decideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;
-													<span class="small text-success">+ ${alist[0].ADecideCnt}명</span>
+													<span class="small text-success">+ <fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" />명</span>
 												</div>
 											</div>
 										</div>
@@ -207,48 +207,8 @@
 				<!-- 지역별 확진자 리스트 end -->
 
 				<br><br>
-				
-				<!-- info small box -->
-				<%-- <div class="row">
-					<div class="col-md-6">
-						<div class="card shadow mb-4">
-							<div class="card-body">
-								<p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Today</strong></p>
-								<h3 class="mb-0">최근 10일 확진자 추이</h3>
-								<p class="text-muted">+18.9% Last week</p>
-								<div class="chart-box mt-n5">
-									<div id="lineChartWidget"></div>
-								</div>
-								<div class="row">
-									<div class="col-4 text-center mt-3">
-										<p class="mb-1 text-muted">Completions</p>
-										<h6 class="mb-0">26</h6>
-										<span class="small text-muted">+20%</span>
-										<span class="fe fe-arrow-up text-success fe-12"></span>
-									</div>
-									<div class="col-4 text-center mt-3">
-										<p class="mb-1 text-muted">Goal Value</p>
-										<h6 class="mb-0">$260</h6>
-										<span class="small text-muted">+6%</span>
-										<span class="fe fe-arrow-up text-success fe-12"></span>
-									</div>
-									<div class="col-4 text-center mt-3">
-										<p class="mb-1 text-muted">Conversion</p>
-										<h6 class="mb-0">6%</h6>
-										<span class="small text-muted">-2%</span>
-										<span class="fe fe-arrow-down text-danger fe-12"></span>
-									</div>
-								</div>
-							</div>
-							<!-- .card-body -->
-						</div>
-						<!-- .card -->
-					</div>
-					<!-- .col-md -->
-				</div> --%>
-				<!-- / .row -->
-				
 				<hr>
+				
 				<div class="row">
 					<!-- Recent orders -->
 					<div class="col-md-12">
