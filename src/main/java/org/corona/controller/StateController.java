@@ -34,11 +34,21 @@ public class StateController {
 	@GetMapping("/")
 	public String test(Model model) throws Exception {
 		
-		//service.Crawler();
+		service.Crawler();
 
 		String eDay = service.today();	// 기준일 (=종료일)
 		String sDay = service.day(eDay);	// 기준일-10일 (=시작일)
-		ArrayList<StateVO> slist = service.covidState(service.getCovidStateApi(sDay, eDay));
+		String check = service.getCovidStateApi(sDay, eDay);
+		if (check.equals("e")) { // error page
+			model.addAttribute("state", service.Crawler());
+			return "/layout/info";
+		}
+		if (check.equals("e")) { // api가 업데이트가 안 된 경우
+			eDay = service.yday(eDay);
+			sDay = service.yday(sDay);
+			check = service.getCovidStateApi(sDay, eDay);
+		}
+		ArrayList<StateVO> slist = service.covidState(check);
 		ArrayList<StateVO> alist = service.aCovidState(slist);
 		log.info("aCovidState alist: " + alist);
 		model.addAttribute("alist", alist);
@@ -50,10 +60,9 @@ public class StateController {
 	
 	@GetMapping("/beta")
 	public String beta(Model model) throws IOException, ParseException {
-		ArrayList<StateVO> list = service.aCovidState(service.covidState(service.getCovidStateApi(service.day(service.today()), service.today())));
-		model.addAttribute("state", list.get(0).getADecideCnt());
-		
-		//service.Crawler();
+//		ArrayList<StateVO> list = service.aCovidState(service.covidState(service.getCovidStateApi(service.day(service.today()), service.today())));
+//		model.addAttribute("state", list.get(0).getADecideCnt());
+		model.addAttribute("state", service.Crawler());
 		
 		ArrayList<DisasterVO> dlist = service.DisasterMsg(service.getDisasterMsgApi());
 		log.info("DisasterMsg dlist: " + dlist);

@@ -34,7 +34,7 @@
 									<div class="col pr-0">
 										<p class="small text-muted mb-0">어제 확진자</p>
 										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state}" pattern="#,###,###" /> 명</span>
-										<span class="small text-success">+16.5%</span>
+										<!-- <span class="small text-success">+16.5%</span> -->
 									</div>
 								</div>
 							</div>

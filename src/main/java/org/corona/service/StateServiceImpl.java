@@ -11,6 +11,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.regex.Pattern;
 import org.corona.domain.AreaVO;
 import org.corona.domain.DisasterVO;
 import org.corona.domain.StateVO;
+import org.corona.domain.ncovVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Connection;
@@ -67,6 +69,18 @@ public class StateServiceImpl implements StateService {
 	}
 	
 	@Override
+	public String yday(String sDay) {
+		
+		Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        cal.add(Calendar.DATE, -1);
+        String yday = fmt.format(cal.getTime());
+        
+		return yday;
+	}
+	
+	@Override
 	public String getCovidStateApi(String sDay, String eDay) throws IOException {
 		
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson");	// URL
@@ -96,6 +110,16 @@ public class StateServiceImpl implements StateService {
         }
         rd.close();
         conn.disconnect();
+        //System.out.println("sb.toString(): "+sb.toString());
+        
+        JSONObject jObject = new JSONObject(sb.toString());
+		JSONObject responseObject = jObject.getJSONObject("response");
+		JSONObject headerObject = responseObject.getJSONObject("header");
+	    int resultCode = headerObject.getInt("resultCode");
+	    
+	    if (resultCode == 99) {
+	    	return "e";
+	    }
         
 		return sb.toString();
 	}
@@ -177,40 +201,51 @@ public class StateServiceImpl implements StateService {
 
 	
 	@Override
-	public void Crawler() {
-		// 대상 URL
+	public String Crawler() {
 		//String URL = "https://m.news.naver.com/covid19/live.nhn";
 		//String URL = "https://corona-live.com/";
-		String URL = "https://corona-live.com/city/0/";
+		String URL = "http://ncov.mohw.go.kr/bdBoardList_Real.do";
+		//ncovVO result = new ncovVO();
+		String result = "";
 		
 		try {
             // Connection 생성
             Connection conn = Jsoup.connect(URL);
             // HTML 파싱
-            Document html = conn.get(); // conn.post();
-            // HTML 출력
-            System.out.println(html.toString()); 
+            Document doc = conn.get(); // conn.post();
+            //System.out.println(html.toString()); 
             
-            // Attribute 탐색
-//            Elements fileblocks = html.getElementsByClass("fileblock");
-//            for( Element fileblock : fileblocks ) {
-//                Elements files = fileblock.getElementsByTag("a");
-//                for( Element elm : files ) {
-//	                String text = elm.text();
-//	                String href = elm.attr("href");
-//	                System.out.println( text+" > "+href );
-//                }
-//            }
-            // CSS Selector 탐색
-//            Elements files = html.select(".fileblock a");
-//            for( Element elm : files ) {
-//            	String text = elm.text();
-//            	String href = elm.attr("href");
-//            	System.out.println( text+" > "+href );
-//            }
+    		String toC = "";
+            Elements inner_value = doc.getElementsByClass("inner_value");
+            for( Element elm : inner_value ) {
+            	toC += elm;
+            }
+            toC = toC.replace("<p class=\"inner_value\">", "");
+            toC = toC.replace(" ", "");
+            toC = toC.replace(",", "");
+    		String[] cut = toC.split("</p>");
+
+    		String toD = "";
+    		Elements t_date = doc.getElementsByClass("t_date");
+            for( Element elm : t_date ) {
+            	toD += elm;
+            }
+            //System.out.println("toD String : "+toD);
+            
+            String toAC = "";
+    		Elements ca_value = doc.getElementsByClass("ca_value");
+            for( Element elm : ca_value ) {
+            	toAC += elm;
+            }
+            //System.out.println("toAC String : "+toAC);
+    		
+    		//result.setAddCnt(cut[0]);
+    		result = cut[0];
         } catch (IOException e) {
             e.printStackTrace();
         }
+		
+		return result;
 	}
 
 	@Override
