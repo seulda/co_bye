@@ -43,11 +43,11 @@ public class StateController {
 			model.addAttribute("state", service.Crawler());
 			return "/layout/info";
 		}
-		if (check.equals("e")) { // api가 업데이트가 안 된 경우
-			eDay = service.yday(eDay);
-			sDay = service.yday(sDay);
-			check = service.getCovidStateApi(sDay, eDay);
-		}
+//		if (check.equals("e")) { // api가 업데이트가 안 된 경우
+//			eDay = service.yday(eDay);
+//			sDay = service.yday(sDay);
+//			check = service.getCovidStateApi(sDay, eDay);
+//		}
 		ArrayList<StateVO> slist = service.covidState(check);
 		ArrayList<StateVO> alist = service.aCovidState(slist);
 		log.info("aCovidState alist: " + alist);

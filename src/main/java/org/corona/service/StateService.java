@@ -30,7 +30,7 @@ public interface StateService {
 	public ArrayList<AreaVO> asaArea(String result);
 	
 	// Jsoup html parse
-	public String Crawler();
+	public ncovVO Crawler();
 	
 	// 재난문자 현황 api 요청
 	public String getDisasterMsgApi() throws IOException;

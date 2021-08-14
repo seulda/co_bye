@@ -10,7 +10,6 @@
 		<div class="alert alert-danger" role="alert">
 			<span class="fe fe-alert-circle fe-16 mr-2"></span>현재 공공데이터포털의 데이터 응답이 원활하지 않아 상세한 정보 제공이 어려운 상태입니다.
 		</div>
-		<!-- <div class="alert alert-info" role="alert"></div> -->
 		<br><br>
 		<div class="row justify-content-center">
 			<div class="col-12">
@@ -24,16 +23,14 @@
 										<span class="circle circle-sm bg-primary"><i class="fe fe-16 fe-filter text-white mb-0"></i></span>
 									</div>
 									<div class="col pr-0">
-										<!-- <p class="small text-muted mb-0">어제 확진자</p> -->
-										<span class="h5 mb-0">기준일자</span><br>
-										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state}" pattern="#,###,###" /> 명</span>
-										<!-- <span class="small text-success">+16.5%</span> -->
+										<span class="h5 mb-0">기준일자 : ${state.ndate}</span><br>
+										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state.addCnt}" pattern="#,###,###" /> 명</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12 col-xl-12 mb-12" style="margin-top: 1%;">
+					<div class="col-md-12 col-xl-12 mb-12" style="margin-top: 2%;">
 						<div class="card shadow border-0">
 							<div class="card-body">
 								<div class="row align-items-center">
@@ -41,10 +38,9 @@
 										<span class="circle circle-sm bg-primary"><i class="fe fe-16 fe-filter text-white mb-0"></i></span>
 									</div>
 									<div class="col pr-0">
-										<!-- <p class="small text-muted mb-0">어제 확진자</p> -->
 										<span class="h5 mb-0">누적 확진자</span><br>
-										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state}" pattern="#,###,###" /> 명</span>
-										<!-- <span class="small text-success">+16.5%</span> -->
+										<span class="h3 mb-0">&nbsp;${state.allCnt} 명</span>
+										<%-- <span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state.allCnt}" pattern="#,###,###" /> 명</span> --%>
 									</div>
 								</div>
 							</div>

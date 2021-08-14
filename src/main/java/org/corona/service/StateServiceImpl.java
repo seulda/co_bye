@@ -201,12 +201,12 @@ public class StateServiceImpl implements StateService {
 
 	
 	@Override
-	public String Crawler() {
+	public ncovVO Crawler() {
 		//String URL = "https://m.news.naver.com/covid19/live.nhn";
 		//String URL = "https://corona-live.com/";
 		String URL = "http://ncov.mohw.go.kr/bdBoardList_Real.do";
-		//ncovVO result = new ncovVO();
-		String result = "";
+		ncovVO result = new ncovVO();
+		//String result = "";
 		
 		try {
             // Connection 생성
@@ -223,24 +223,35 @@ public class StateServiceImpl implements StateService {
             toC = toC.replace("<p class=\"inner_value\">", "");
             toC = toC.replace(" ", "");
             toC = toC.replace(",", "");
-    		String[] cut = toC.split("</p>");
+    		String[] cutC = toC.split("</p>");
 
     		String toD = "";
     		Elements t_date = doc.getElementsByClass("t_date");
             for( Element elm : t_date ) {
             	toD += elm;
             }
-            //System.out.println("toD String : "+toD);
+            toD = toD.replace("<span class=\"t_date\">(", "");
+            toD = toD.replace(". 00시 기준)", "");
+    		String[] cutD = toD.split("</span>", 2);
+//            System.out.println("cutD String : "+Arrays.toString(cutD)+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
+//            System.out.println("cutD[0] : "+cutD[0]+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
             
             String toAC = "";
     		Elements ca_value = doc.getElementsByClass("ca_value");
             for( Element elm : ca_value ) {
             	toAC += elm;
             }
-            //System.out.println("toAC String : "+toAC);
+            toAC = toAC.replace("<dd class=\"ca_value\">", "");
+            toAC = toAC.replace(" ", "");
+            toAC = toAC.replace("\n", "");
+    		String[] cutAC = toAC.split("</dd>", 2);
+//            System.out.println("cutAC String : "+Arrays.toString(cutAC)+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
+//            System.out.println("cutAC[0] : "+cutAC[0]+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
     		
-    		//result.setAddCnt(cut[0]);
-    		result = cut[0];
+    		result.setAddCnt(cutC[0]);
+            result.setNdate(cutD[0]);
+            result.setAllCnt(cutAC[0]);
+    		//result = cutC[0];
         } catch (IOException e) {
             e.printStackTrace();
         }
