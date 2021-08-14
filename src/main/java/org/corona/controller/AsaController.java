@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.corona.domain.AgeVO;
 import org.corona.domain.AreaVO;
+import org.corona.service.StateService;
 import org.corona.service.asaService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -23,11 +24,20 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping
 public class AsaController {
 	
-	asaService asc;
+	private asaService as;
+	private StateService ss;
 	
 	
 	@GetMapping("/asa")
 	public String asaList(Model model) throws Exception {
+		
+		String checkASA = as.getAreaApi(ss.today(), ss.today());
+		if (checkASA.equals("e")) { // api error
+			model.addAttribute("state", ss.Crawler());
+			model.addAttribute("e", "e");
+			return "/layout/info";
+		}
+		
 		
 		// 현재 시간 구하는 식
 		SimpleDateFormat tt = new SimpleDateFormat("HHmmss");
@@ -47,10 +57,10 @@ public class AsaController {
 			String endCreateDt = yD.format(yDate);
 			
 			// 지역
-			ArrayList<AreaVO> alist = asc.asaArea(asc.getAreaApi(startCreateDt, endCreateDt));
+			ArrayList<AreaVO> alist = as.asaArea(as.getAreaApi(startCreateDt, endCreateDt));
 			model.addAttribute("alist", alist);
 			// 성별연령
-			ArrayList<AgeVO> blist = asc.asaAge(asc.getAgeApi(startCreateDt, endCreateDt));
+			ArrayList<AgeVO> blist = as.asaAge(as.getAgeApi(startCreateDt, endCreateDt));
 			model.addAttribute("blist", blist);
 			
 		} 
@@ -65,10 +75,10 @@ public class AsaController {
 			String endCreateDt = tD.format(time);
 			
 			// 지역
-			ArrayList<AreaVO> alist = asc.asaArea(asc.getAreaApi(startCreateDt, endCreateDt));
+			ArrayList<AreaVO> alist = as.asaArea(as.getAreaApi(startCreateDt, endCreateDt));
 			model.addAttribute("alist", alist);
 			
-			if (asc.asaAge(asc.getAgeApi(startCreateDt, endCreateDt)) == null) { // 오늘 날짜의 값이 널이면 어제 날짜를 구하고
+			if (as.asaAge(as.getAgeApi(startCreateDt, endCreateDt)) == null) { // 오늘 날짜의 값이 널이면 어제 날짜를 구하고
 				// 어제 날짜 구하는 식
 				SimpleDateFormat yD = new SimpleDateFormat("yyyyMMdd");
 				Date yDate = new Date();
@@ -78,17 +88,17 @@ public class AsaController {
 				String sc = yD.format(yDate);
 				String ec = yD.format(yDate);
 
-				if (asc.asaAge(asc.getAgeApi(sc, ec)) == null) { // 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이면 유감...
+				if (as.asaAge(as.getAgeApi(sc, ec)) == null) { // 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이면 유감...
 					String blist = "유감";
 					model.addAttribute("blist", blist);
 				} else { // 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이아니면 어제 값을 넣어주고 리턴
 					// 연령별, 성별
-					ArrayList<AgeVO> blist = asc.asaAge(asc.getAgeApi(sc, ec));
+					ArrayList<AgeVO> blist = as.asaAge(as.getAgeApi(sc, ec));
 					model.addAttribute("blist", blist);
 				}
 			} else { // 오늘날짜의 값이 널이 아니면 값을 넣어주고 리턴
 				// 연령별, 성별
-				ArrayList<AgeVO> blist = asc.asaAge(asc.getAgeApi(startCreateDt, endCreateDt));
+				ArrayList<AgeVO> blist = as.asaAge(as.getAgeApi(startCreateDt, endCreateDt));
 				model.addAttribute("blist", blist);
 			}
 			

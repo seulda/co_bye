@@ -1,15 +1,23 @@
 package org.corona.controller;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.corona.service.StateService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.AllArgsConstructor;
 
 
 
 @Controller
+@RequestMapping
+@AllArgsConstructor
 public class HomeController {
+	
+	private StateService ss;
+	
 	
 //	@GetMapping("/")
 //	public String index() {
@@ -29,6 +37,12 @@ public class HomeController {
 	@GetMapping("/hospital")
 	public String hospital() {
 		return "/hospital/hospital";
+	}
+	
+	@GetMapping("/info")
+	public String info(Model model) {
+		model.addAttribute("state", ss.Crawler());
+		return "/layout/info";
 	}
 	
 }

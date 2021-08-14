@@ -110,13 +110,11 @@ public class StateServiceImpl implements StateService {
         }
         rd.close();
         conn.disconnect();
-        //System.out.println("sb.toString(): "+sb.toString());
         
         JSONObject jObject = new JSONObject(sb.toString());
 		JSONObject responseObject = jObject.getJSONObject("response");
 		JSONObject headerObject = responseObject.getJSONObject("header");
 	    int resultCode = headerObject.getInt("resultCode");
-	    
 	    if (resultCode == 99) {
 	    	return "e";
 	    }
@@ -206,14 +204,13 @@ public class StateServiceImpl implements StateService {
 		//String URL = "https://corona-live.com/";
 		String URL = "http://ncov.mohw.go.kr/bdBoardList_Real.do";
 		ncovVO result = new ncovVO();
-		//String result = "";
 		
 		try {
             // Connection 생성
             Connection conn = Jsoup.connect(URL);
             // HTML 파싱
             Document doc = conn.get(); // conn.post();
-            //System.out.println(html.toString()); 
+            //System.out.println(doc.toString()); 
             
     		String toC = "";
             Elements inner_value = doc.getElementsByClass("inner_value");
@@ -233,8 +230,7 @@ public class StateServiceImpl implements StateService {
             toD = toD.replace("<span class=\"t_date\">(", "");
             toD = toD.replace(". 00시 기준)", "");
     		String[] cutD = toD.split("</span>", 2);
-//            System.out.println("cutD String : "+Arrays.toString(cutD)+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
-//            System.out.println("cutD[0] : "+cutD[0]+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
+    		cutD[0] = cutD[0].replace(".", "월 ") + "일";
             
             String toAC = "";
     		Elements ca_value = doc.getElementsByClass("ca_value");
@@ -245,13 +241,11 @@ public class StateServiceImpl implements StateService {
             toAC = toAC.replace(" ", "");
             toAC = toAC.replace("\n", "");
     		String[] cutAC = toAC.split("</dd>", 2);
-//            System.out.println("cutAC String : "+Arrays.toString(cutAC)+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
-//            System.out.println("cutAC[0] : "+cutAC[0]+"\n@@@@@@@@@@@@@@@@@@@@@@@@@");
     		
     		result.setAddCnt(cutC[0]);
             result.setNdate(cutD[0]);
             result.setAllCnt(cutAC[0]);
-    		//result = cutC[0];
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -392,7 +386,15 @@ public class StateServiceImpl implements StateService {
 		}
 		rd.close();
 		conn.disconnect();
-
+		
+		JSONObject jObject = new JSONObject(sb.toString());
+		JSONObject responseObject = jObject.getJSONObject("response");
+		JSONObject headerObject = responseObject.getJSONObject("header");
+	    int resultCode = headerObject.getInt("resultCode");
+	    if (resultCode == 99) {
+	    	return "e";
+	    }
+	    
 		return sb.toString();
 	}
 	
