@@ -3,7 +3,7 @@ package org.corona.domain;
 import lombok.Data;
 
 @Data
-public class AgeVO {
+public class GenAgeVO {
 	
 	private String gubun;		// 연령, 성별
 	private int confCase;		// 확진자

@@ -2,7 +2,7 @@ package org.corona.service;
 
 import java.util.ArrayList;
 
-import org.corona.domain.AgeVO;
+import org.corona.domain.GenAgeVO;
 import org.corona.domain.AreaVO;
 
 public interface asaService {
@@ -15,7 +15,7 @@ public interface asaService {
 	public ArrayList<AreaVO> asaArea(String result);
 	
 	// 연령, 성별
-	public String getAgeApi(String startCreateDt, String endCreateDt) throws Exception;
-	public ArrayList<AgeVO> asaAge(String result);
+	public String getGenAgeApi(String startCreateDt, String endCreateDt) throws Exception;
+	public ArrayList<GenAgeVO> asaAge(String result);
 	
 }

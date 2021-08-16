@@ -404,25 +404,18 @@ public class StateServiceImpl implements StateService {
 		ArrayList<AreaVO> list = new ArrayList<AreaVO>();
 
 		JSONObject jObject = new JSONObject(jsonString);
-
-		// (response) 0번째 JSONObject를 가져옵니다.
+		// (response)
 		JSONObject responseObject = jObject.getJSONObject("response");
-
-		// (response -> header) 1번째 JSONObject를 가져와서 key-value를 읽습니다.
+		// (response -> header, body)
 		JSONObject headerObject = responseObject.getJSONObject("header");
-		String resultCode = headerObject.getString("resultCode");
-		String resultMsg = headerObject.getString("resultMsg");
-
+//		String resultCode = headerObject.getString("resultCode");
+//		String resultMsg = headerObject.getString("resultMsg");
 		JSONObject bodyObject = responseObject.getJSONObject("body");
+		// (response -> body -> items -> item)
 		JSONObject itemsObject = bodyObject.getJSONObject("items");
-		String numOfRows = Integer.toString(bodyObject.getInt("numOfRows"));
-		String pageNo = Integer.toString(bodyObject.getInt("pageNo"));
-		String totalCount = Integer.toString(bodyObject.getInt("totalCount"));
-
-		// (response -> body -> items -> item(node 2개이상)) 세번째 JSONObject를 가져와서 key-value를 읽습니다.
 		JSONArray itemArray = itemsObject.getJSONArray("item");
+		
 		for (int i = 0; i < itemArray.length(); i++) {
-			
 			AreaVO avo = new AreaVO();
 			JSONObject iobj = itemArray.getJSONObject(i);
 			

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.corona.domain.AgeVO;
+import org.corona.domain.GenAgeVO;
 import org.corona.domain.AreaVO;
 import org.corona.service.StateService;
 import org.corona.service.asaService;
@@ -31,8 +31,9 @@ public class AsaController {
 	@GetMapping("/asa")
 	public String asaList(Model model) throws Exception {
 		
-		String checkASA = as.getAreaApi(ss.today(), ss.today());
-		if (checkASA.equals("e")) { // api error
+		String checkArea = as.getAreaApi(as.today(), as.today());
+		String checkGenAge = as.getGenAgeApi(as.today(), as.today());
+		if (checkArea.equals("e") || checkGenAge.equals("e")) { // api error
 			model.addAttribute("state", ss.Crawler());
 			model.addAttribute("e", "e");
 			return "/layout/info";
@@ -60,7 +61,7 @@ public class AsaController {
 			ArrayList<AreaVO> alist = as.asaArea(as.getAreaApi(startCreateDt, endCreateDt));
 			model.addAttribute("alist", alist);
 			// 성별연령
-			ArrayList<AgeVO> blist = as.asaAge(as.getAgeApi(startCreateDt, endCreateDt));
+			ArrayList<GenAgeVO> blist = as.asaAge(as.getGenAgeApi(startCreateDt, endCreateDt));
 			model.addAttribute("blist", blist);
 			
 		} 
@@ -78,7 +79,7 @@ public class AsaController {
 			ArrayList<AreaVO> alist = as.asaArea(as.getAreaApi(startCreateDt, endCreateDt));
 			model.addAttribute("alist", alist);
 			
-			if (as.asaAge(as.getAgeApi(startCreateDt, endCreateDt)) == null) { // 오늘 날짜의 값이 널이면 어제 날짜를 구하고
+			if (as.asaAge(as.getGenAgeApi(startCreateDt, endCreateDt)) == null) { // 오늘 날짜의 값이 널이면 어제 날짜를 구하고
 				// 어제 날짜 구하는 식
 				SimpleDateFormat yD = new SimpleDateFormat("yyyyMMdd");
 				Date yDate = new Date();
@@ -88,17 +89,17 @@ public class AsaController {
 				String sc = yD.format(yDate);
 				String ec = yD.format(yDate);
 
-				if (as.asaAge(as.getAgeApi(sc, ec)) == null) { // 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이면 유감...
+				if (as.asaAge(as.getGenAgeApi(sc, ec)) == null) { // 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이면 유감...
 					String blist = "유감";
 					model.addAttribute("blist", blist);
 				} else { // 오늘 날짜의 값이 널이어서 어제날짜를 구했는데 널이아니면 어제 값을 넣어주고 리턴
 					// 연령별, 성별
-					ArrayList<AgeVO> blist = as.asaAge(as.getAgeApi(sc, ec));
+					ArrayList<GenAgeVO> blist = as.asaAge(as.getGenAgeApi(sc, ec));
 					model.addAttribute("blist", blist);
 				}
 			} else { // 오늘날짜의 값이 널이 아니면 값을 넣어주고 리턴
 				// 연령별, 성별
-				ArrayList<AgeVO> blist = as.asaAge(as.getAgeApi(startCreateDt, endCreateDt));
+				ArrayList<GenAgeVO> blist = as.asaAge(as.getGenAgeApi(startCreateDt, endCreateDt));
 				model.addAttribute("blist", blist);
 			}
 			

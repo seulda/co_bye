@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.corona.domain.AgeVO;
+import org.corona.domain.GenAgeVO;
 import org.corona.domain.AreaVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -72,6 +72,14 @@ public class asaServiceImpl implements asaService {
 		}
 		rd.close();
 		conn.disconnect();
+		
+		JSONObject jObject = new JSONObject(sb.toString());
+		JSONObject responseObject = jObject.getJSONObject("response");
+		JSONObject headerObject = responseObject.getJSONObject("header");
+	    int resultCode = headerObject.getInt("resultCode");
+	    if (resultCode == 99) {
+	    	return "e";
+	    }
 
 		return sb.toString();
 	}
@@ -80,27 +88,19 @@ public class asaServiceImpl implements asaService {
 	public ArrayList<AreaVO> asaArea(String jsonString) {
 
 		ArrayList<AreaVO> list = new ArrayList<AreaVO>();
-
 		JSONObject jObject = new JSONObject(jsonString);
-
-		// (response) 0번째 JSONObject를 가져옵니다.
+		// (response)
 		JSONObject responseObject = jObject.getJSONObject("response");
-
-		// (response -> header) 1번째 JSONObject를 가져와서 key-value를 읽습니다.
+		// (response -> header, body)
 		JSONObject headerObject = responseObject.getJSONObject("header");
-		String resultCode = headerObject.getString("resultCode");
-		String resultMsg = headerObject.getString("resultMsg");
-
+//		String resultCode = headerObject.getString("resultCode");
+//		String resultMsg = headerObject.getString("resultMsg");
 		JSONObject bodyObject = responseObject.getJSONObject("body");
+		// (response -> body -> items -> item)
 		JSONObject itemsObject = bodyObject.getJSONObject("items");
-		String numOfRows = Integer.toString(bodyObject.getInt("numOfRows"));
-		String pageNo = Integer.toString(bodyObject.getInt("pageNo"));
-		String totalCount = Integer.toString(bodyObject.getInt("totalCount"));
-
-		// (response -> body -> items -> item(node 2개이상)) 세번째 JSONObject를 가져와서 key-value를 읽습니다.
 		JSONArray itemArray = itemsObject.getJSONArray("item");
+		
 		for (int i = 0; i < itemArray.length(); i++) {
-			
 			AreaVO avo = new AreaVO();
 			JSONObject iobj = itemArray.getJSONObject(i);
 			
@@ -123,7 +123,7 @@ public class asaServiceImpl implements asaService {
 	
 	// 연령, 성별
 	@Override
-	public String getAgeApi(String startCreateDt, String endCreateDt) throws Exception {
+	public String getGenAgeApi(String startCreateDt, String endCreateDt) throws Exception {
 
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19GenAgeCaseInfJson"); // URL
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=c1sNS0F8dzRRFujphkwtO4hhp5OmOL%2FM8ZD31ri59F0wB%2B3CtmKCGRzhXc43qEHoEvIdMERNztk0vvVjdNKOFA%3D%3D"); // Service Key
@@ -151,50 +151,47 @@ public class asaServiceImpl implements asaService {
 		}
 		rd.close();
 		conn.disconnect();
+		
+		JSONObject jObject = new JSONObject(sb.toString());
+		JSONObject responseObject = jObject.getJSONObject("response");
+		JSONObject headerObject = responseObject.getJSONObject("header");
+	    int resultCode = headerObject.getInt("resultCode");
+	    if (resultCode == 99) {
+	    	return "e";
+	    }
 
 		return sb.toString();
 	}
 	
 	@Override
-	public ArrayList<AgeVO> asaAge(String jsonString) {
+	public ArrayList<GenAgeVO> asaAge(String jsonString) {
 
-		ArrayList<AgeVO> agelist = new ArrayList<AgeVO>();
-
+		ArrayList<GenAgeVO> agelist = new ArrayList<GenAgeVO>();
 		JSONObject jObject = new JSONObject(jsonString);
-
-		// (response) 0번째 JSONObject를 가져옵니다.
+		// (response)
 		JSONObject responseObject = jObject.getJSONObject("response");
-
-		// (response -> header) 1번째 JSONObject를 가져와서 key-value를 읽습니다.
+		// (response -> header, body)
 		JSONObject headerObject = responseObject.getJSONObject("header");
-		String resultCode = headerObject.getString("resultCode");
-		String resultMsg = headerObject.getString("resultMsg");
-
+//		String resultCode = headerObject.getString("resultCode");
+//		String resultMsg = headerObject.getString("resultMsg");
 		JSONObject bodyObject = responseObject.getJSONObject("body");
-		String numOfRows = Integer.toString(bodyObject.getInt("numOfRows"));
-		String pageNo = Integer.toString(bodyObject.getInt("pageNo"));
-		String totalCount = Integer.toString(bodyObject.getInt("totalCount"));
+//		String totalCount = Integer.toString(bodyObject.getInt("totalCount"));
+		// (response -> body -> items -> item)
+		JSONObject itemsObject = bodyObject.getJSONObject("items");
+		JSONArray itemArray = itemsObject.getJSONArray("item");
 		
-		if (totalCount.equals("0")) {
-			agelist = null;
-		} else {
+		for (int i = 0; i < itemArray.length(); i++) {
+
+			GenAgeVO avo = new GenAgeVO();
+			JSONObject iobj = itemArray.getJSONObject(i);
 			
-			JSONObject itemsObject = bodyObject.getJSONObject("items");
-			// (response -> body -> items -> item(node 2개이상)) 세번째 JSONObject를 가져와서 key-value를 읽습니다.
-			JSONArray itemArray = itemsObject.getJSONArray("item");
-			for (int i = 0; i < itemArray.length(); i++) {
+			avo.setGubun(iobj.getString("gubun"));				// 연령, 성별
+			avo.setConfCase(iobj.getInt("confCase"));			// 확진자
+			avo.setConfCaseRate(iobj.getInt("confCaseRate"));	// 확진률
+			avo.setDeath(iobj.getInt("death"));					// 사망자
+			avo.setDeathRate(iobj.getFloat("deathRate"));		// 사망률
 
-				AgeVO avo = new AgeVO();
-				JSONObject iobj = itemArray.getJSONObject(i);
-				
-				avo.setGubun(iobj.getString("gubun"));				// 연령, 성별
-				avo.setConfCase(iobj.getInt("confCase"));			// 확진자
-				avo.setConfCaseRate(iobj.getInt("confCaseRate"));	// 확진률
-				avo.setDeath(iobj.getInt("death"));					// 사망자
-				avo.setDeathRate(iobj.getFloat("deathRate"));		// 사망률
-
-				agelist.add(avo);
-			}
+			agelist.add(avo);
 		}
 		
 		return agelist;
