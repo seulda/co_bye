@@ -7,7 +7,7 @@
 	<main role="main" class="main-content">
 		<div class="container-fluid">
 			<fmt:parseDate value="${td}" var="date" pattern="yyyyMMdd" />
-			<div class="alert alert-primary" role="alert">&nbsp;<fmt:formatDate value="${date}" pattern="MM월 dd일"/> 기준 || 지역별 및 성별/연령별 확진자를 확인할 수 있습니다.</div>
+			<div class="alert alert-primary" role="alert">&nbsp;<fmt:formatDate value="${date}" pattern="MM월 dd일"/> 기준 | 지역별 및 성별/연령별 확진자를 확인할 수 있습니다.</div>
 			<div class="row justify-content-center">
 				<div class="col-12">
 					<div class="row">
@@ -45,7 +45,7 @@
 												<th scope="col" style="text-align:center;">${blist.gubun}</th>
 												<td style="text-align:center;">+ <fmt:formatNumber value="${blist.confCase}" pattern="#,###,###" /> 명</td>
 												<td style="text-align:center;">${blist.confCaseRate}%</td>
-												<td style="text-align:center;">${blist.death} 명</td>
+												<td style="text-align:center;"><fmt:formatNumber value="${blist.death}" pattern="#,###,###" /> 명</td>
 												<td style="text-align:center;">${blist.deathRate}%</td>
 												<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}" />
 												<input type="hidden" name="death" id="death" value="${blist.death}" />
