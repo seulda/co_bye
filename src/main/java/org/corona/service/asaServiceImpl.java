@@ -13,7 +13,6 @@ import org.corona.domain.GenAgeVO;
 import org.corona.domain.AreaVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -47,7 +46,7 @@ public class asaServiceImpl implements asaService {
 	public String getAreaApi(String startCreateDt, String endCreateDt) throws Exception {
 
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson"); // URL
-		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=c1sNS0F8dzRRFujphkwtO4hhp5OmOL%2FM8ZD31ri59F0wB%2B3CtmKCGRzhXc43qEHoEvIdMERNztk0vvVjdNKOFA%3D%3D"); // Service Key
+		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=A04I%2FDZd%2FTh0VEDOtCHizLhisxQeu9JTtTshqLMp9wJYwCF0wAAbOC5MpN%2BGwGuessW1Z%2FqgzaVdEgJCuPqodw%3D%3D"); // Service Key
 		urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + URLEncoder.encode("-", "UTF-8")); // 공공데이터포털에서 받은 인증키
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); // 페이지번호
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); // 한 페이지 결과 수
@@ -92,7 +91,7 @@ public class asaServiceImpl implements asaService {
 		// (response)
 		JSONObject responseObject = jObject.getJSONObject("response");
 		// (response -> header, body)
-		JSONObject headerObject = responseObject.getJSONObject("header");
+//		JSONObject headerObject = responseObject.getJSONObject("header");
 //		String resultCode = headerObject.getString("resultCode");
 //		String resultMsg = headerObject.getString("resultMsg");
 		JSONObject bodyObject = responseObject.getJSONObject("body");
@@ -126,7 +125,7 @@ public class asaServiceImpl implements asaService {
 	public String getGenAgeApi(String startCreateDt, String endCreateDt) throws Exception {
 
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19GenAgeCaseInfJson"); // URL
-		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=c1sNS0F8dzRRFujphkwtO4hhp5OmOL%2FM8ZD31ri59F0wB%2B3CtmKCGRzhXc43qEHoEvIdMERNztk0vvVjdNKOFA%3D%3D"); // Service Key
+		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=A04I%2FDZd%2FTh0VEDOtCHizLhisxQeu9JTtTshqLMp9wJYwCF0wAAbOC5MpN%2BGwGuessW1Z%2FqgzaVdEgJCuPqodw%3D%3D"); // Service Key
 		urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + URLEncoder.encode("-", "UTF-8")); // 공공데이터포털에서 받은 인증키
 		urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); // 페이지번호
 		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); // 한 페이지 결과 수
@@ -159,19 +158,24 @@ public class asaServiceImpl implements asaService {
 	    if (resultCode == 99) {
 	    	return "e";
 	    }
+	    JSONObject bodyObject = responseObject.getJSONObject("body");
+		int totalCount = bodyObject.getInt("totalCount");
+	    if (totalCount == 0) {
+	    	return "n";
+	    }
 
 		return sb.toString();
 	}
 	
 	@Override
-	public ArrayList<GenAgeVO> asaAge(String jsonString) {
+	public ArrayList<GenAgeVO> asaGenAge(String jsonString) {
 
 		ArrayList<GenAgeVO> agelist = new ArrayList<GenAgeVO>();
 		JSONObject jObject = new JSONObject(jsonString);
 		// (response)
 		JSONObject responseObject = jObject.getJSONObject("response");
 		// (response -> header, body)
-		JSONObject headerObject = responseObject.getJSONObject("header");
+//		JSONObject headerObject = responseObject.getJSONObject("header");
 //		String resultCode = headerObject.getString("resultCode");
 //		String resultMsg = headerObject.getString("resultMsg");
 		JSONObject bodyObject = responseObject.getJSONObject("body");

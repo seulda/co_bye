@@ -6,20 +6,25 @@
 		
 	<main role="main" class="main-content">
 		<div class="container-fluid">
-			<div class="alert alert-primary" role="alert">지역, 성별, 연령별 확진자를 확인할 수 있습니다.</div>
+			<fmt:parseDate value="${td}" var="date" pattern="yyyyMMdd" />
+			<div class="alert alert-primary" role="alert">&nbsp;<fmt:formatDate value="${date}" pattern="MM월 dd일"/> 기준 || 지역별 및 성별/연령별 확진자를 확인할 수 있습니다.</div>
 			<div class="row justify-content-center">
 				<div class="col-12">
 					<div class="row">
 						<div class="col-md-12">
-							<h6 class="mb-3" style="text-align:center;">성별 연령별 확진자 한눈에 보기</h6>
-							<c:set var="list" value="${blist}"/>
+							<c:set var="list" value="${genAge}"/>
 							<c:choose>
-								<c:when test="${list ne '유감'}">
+								<c:when test="${list eq 'n'}">
+									<div class="alert alert-danger" role="alert">
+										<span class="fe fe-alert-circle fe-16 mr-2"></span>현재 공공데이터포털의 성별, 연령별 확진자 정보가 업데이트 되지 않아 정보 확인이 어려운 상태입니다.
+									</div>
+								</c:when>
+								<c:when test="${list ne 'n'}">
 									<div class="row my-4">
 										<div class="col-md-12">
 											<h4 style="text-align:center; margin:30px 0px;">연령별 확진자</h4>
 											<div class="chart-box" style="padding:0px 20px;">
-												<div id="columnChart" style="margin: 20px auto;  text-align: center;"></div>
+												<div id="columnChart" style="margin: 20px auto; text-align: center;"></div>
 											</div>
 										</div>
 									</div>
@@ -27,81 +32,77 @@
 									<table class="table table-borderless table-striped">
 										<thead>
 											<tr role="row">
-												<th>연령, 성별</th>
-												<th>확진률</th>
-												<th>확진자</th>
-												<th>사망률</th>
-												<th>사망자</th>
+												<th style="text-align:center;">연령, 성별</th>
+												<th style="text-align:center;">확진자</th>
+												<th style="text-align:center;">확진률</th>
+												<th style="text-align:center;">사망자</th>
+												<th style="text-align:center;">사망률</th>
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach var="blist" items="${blist}">
+										<c:forEach var="blist" items="${genAge}">
 											<tr>
-												<th scope="col">${blist.gubun}</th>
-												<td>${blist.confCaseRate}%</td>
-												<td>+${blist.confCase}</td>
+												<th scope="col" style="text-align:center;">${blist.gubun}</th>
+												<td style="text-align:center;">+ <fmt:formatNumber value="${blist.confCase}" pattern="#,###,###" /> 명</td>
+												<td style="text-align:center;">${blist.confCaseRate}%</td>
+												<td style="text-align:center;">${blist.death} 명</td>
+												<td style="text-align:center;">${blist.deathRate}%</td>
 												<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}" />
-												<td>${blist.deathRate}%</td>
-												<td>${blist.death}</td>
 												<input type="hidden" name="death" id="death" value="${blist.death}" />
 											</tr>
 										</c:forEach>
 										</tbody>
 									</table>
 								</c:when>
-								<c:when test="${list eq '유감'}">
-									<h1 style="text-align: center;">성별, 연령별 확진자 정보의 업데이트가 되지 않았습니다.(유감)
-										<br>주말에는 업데이트가 어렵습니다.(유감)</h1>
-								</c:when>
 							</c:choose>
 						</div>
 						
+						<br><br><hr><br><br>
 						
 						<!-- 지역별 확진자 그래프 -->
 						<div class="col-md-12">
-							<h4 style="text-align:center; margin-top:150px; ">지역별 확진자</h4>
+							<h4 style="text-align:center; margin:30px 0px;">지역별 확진자</h4>
 							<div class="chart-box" style="padding:0px 20px;">
-								<div id="columnChart1" style="margin: 20px auto;  text-align: center;"></div>
+								<div id="columnChart1" style="margin: 20px auto; text-align: center;"></div>
 							</div>
 						</div>
 						
 						<!-- 지역별 확진자 리스트 -->
 						<div class="col-md-12">
-							<h6 class="mb-3" style="text-align:center;">지역 리스트</h6>
 							<table class="table table-borderless table-striped">
 								<thead>
 									<tr role="row">
-										<th>지역</th>
-										<th>등록 일시</th>
-										<th>전체 확진자</th>
-										<th>전일 대비</th>
-										<th>격리중</th>
-										<th>격리 해제</th>
-										<th>사망자 수</th>
-										<th>지역 발생</th>
-										<th>해외 유입</th>
+										<th style="text-align:center;">지역</th>
+										<th style="text-align:center;">기준 일시</th>
+										<th style="text-align:center;">전체 확진자</th>
+										<th style="text-align:center;">전일 대비</th>
+										<th style="text-align:center;">격리중</th>
+										<th style="text-align:center;">격리 해제</th>
+										<th style="text-align:center;">사망자 수</th>
+										<th style="text-align:center;">지역 발생</th>
+										<th style="text-align:center;">해외 유입</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="alist" items="${alist}">
+									<c:forEach var="alist" items="${area}">
 										<tr>
-											<th scope="col">${alist.gubun}</th>
-											<input type="hidden" name="gubun" id="gubun" value="${alist.gubun}" />
+											<th scope="col" style="text-align:center;">${alist.gubun}</th>
 											<fmt:parseDate value="${alist.createDt}" var="dateTime" pattern="yyyy-MM-dd HH:mm:ss" />
-											<td><fmt:formatDate value="${dateTime}" pattern="yyyy-MM-dd"/></td>
+											<td style="text-align:center;"><fmt:formatDate value="${dateTime}" pattern="MM월 dd일"/></td>
+											<td style="text-align:center;"><fmt:formatNumber value="${alist.defCnt}" pattern="#,###,###" /> 명</td>  <!-- 전체 확진자 -->
+											<td style="text-align:center;">+ <fmt:formatNumber value="${alist.incDec}" pattern="#,###,###" /></td> <!-- 전일 대비 -->
+											<td style="text-align:center;"><fmt:formatNumber value="${alist.isolIngCnt}" pattern="#,###,###" /></td> <!-- 격리중 -->
+											<td style="text-align:center;"><fmt:formatNumber value="${alist.isolClearCnt}" pattern="#,###,###" /></td> <!-- 격리해제 --> 
+											<td style="text-align:center;"><fmt:formatNumber value="${alist.deathCnt}" pattern="#,###,###" /></td>	<!-- 사망자 수  -->
+											<td style="text-align:center;"><fmt:formatNumber value="${alist.localOccCnt}" pattern="#,###,###" /></td><!-- 지역 발생  -->
+											<td style="text-align:center;"><fmt:formatNumber value="${alist.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
+											<input type="hidden" name="gubun" id="gubun" value="${alist.gubun}" />
 											<input type="hidden" name="dateTime" id="dateTime" value="${dateTime}" />
-											<td>${alist.defCnt}</td>  <!-- 전체 확진자 -->
 											<input type="hidden" name="defCnt" id="defCnt" value="${alist.defCnt}" />
-											<td>+${alist.incDec}</td> <!-- 전일 대비 -->
 											<input type="hidden" name="incDec" id="incDec" value="${alist.incDec}" />
-											<td>${alist.isolIngCnt}</td> <!-- 격리중 -->
 											<input type="hidden" name="isolIngCnt" id="isolIngCnt" value="${alist.isolIngCnt}" />
-											<td>${alist.isolClearCnt}</td> <!-- 격리해제 --> 
 											<input type="hidden" name="isolClearCnt" id="isolClearCnt" value="${alist.isolClearCnt}" />
-											<td>${alist.deathCnt}</td>	<!-- 사망자 수  -->
 											<input type="hidden" name="deathCnt" id="deathCnt" value="${alist.deathCnt}" />
-											<td>${alist.localOccCnt}</td>
-											<td>${alist.overFlowCnt}</td>	<!-- 해외 유입 -->
 											<input type="hidden" name="overFlowCnt" id="overFlowCnt" value="${alist.overFlowCnt}" />
 										</tr>
 									</c:forEach>
@@ -123,9 +124,9 @@
 <!-- 지역 그래프 -->
 <script>
 	var dateArea = [], D = [];
-	<c:forEach var="alist" items="${alist}">
-		var a = "${alist.gubun}";
-	    var a1 = '${alist.incDec}';
+	<c:forEach var="area" items="${area}">
+		var a = "${area.gubun}";
+	    var a1 = '${area.incDec}';
 	    dateArea.push(a);
 	    D.push(a1);
 	</c:forEach>
@@ -280,9 +281,9 @@
 <!-- 연령별 그래프 -->
 <script>
 	var dateArea = [], D = [];
-	<c:forEach var="blist" items="${blist}">
-		var a = "${blist.gubun}";
-	    var a1 = '${blist.confCase}';
+	<c:forEach var="genAge" items="${genAge}">
+		var a = "${genAge.gubun}";
+	    var a1 = '${genAge.confCase}';
 	    dateArea.push(a);
 	    D.push(a1);
 	</c:forEach>
@@ -430,4 +431,6 @@
     columnChartCtn = document.querySelector("#columnChart");
 	columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
 </script>
+
+
 <%@ include file="../layout/footer.jsp"%>

@@ -16,6 +16,6 @@ public interface asaService {
 	
 	// 연령, 성별
 	public String getGenAgeApi(String startCreateDt, String endCreateDt) throws Exception;
-	public ArrayList<GenAgeVO> asaAge(String result);
+	public ArrayList<GenAgeVO> asaGenAge(String result);
 	
 }
