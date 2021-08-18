@@ -25,7 +25,7 @@
 		<img height="20" width="20" src="${pageContext.request.contextPath}/resources/image/clipart353131.png">&nbsp; 선별진료소
 	</div>
 	<div class="container-fluid">
-		<div id="map" style="width:100%;height:100vh;"></div>
+		<div id="map" style="width:100%;height:90vh;"></div>
 	</div>
 </main>
 

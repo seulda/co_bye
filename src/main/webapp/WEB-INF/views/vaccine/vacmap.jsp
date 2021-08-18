@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <main role="main" class="main-content">
-	<div id="map" style="width:100%;height:100vh;"></div>
+	<div id="map" style="width:100%;height:90vh;"></div>
 </main>
 
 

@@ -275,7 +275,6 @@
     },
     columnChartCtn = document.querySelector("#columnChart1");
 	columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
-	
 </script>
 
 <!-- 연령별 그래프 -->
