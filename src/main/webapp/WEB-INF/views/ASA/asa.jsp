@@ -11,53 +11,6 @@
 			<div class="row justify-content-center">
 				<div class="col-12">
 					<div class="row">
-						<div class="col-md-12">
-							<c:set var="list" value="${genAge}"/>
-							<c:choose>
-								<c:when test="${list eq 'n'}">
-									<div class="alert alert-danger" role="alert">
-										<span class="fe fe-alert-circle fe-16 mr-2"></span>현재 공공데이터포털의 성별, 연령별 확진자 정보가 업데이트 되지 않아 정보 확인이 어려운 상태입니다.
-									</div>
-								</c:when>
-								<c:when test="${list ne 'n'}">
-									<div class="row my-4">
-										<div class="col-md-12">
-											<h4 style="text-align:center; margin:30px 0px;">연령별 확진자</h4>
-											<div class="chart-box" style="padding:0px 20px;">
-												<div id="columnChart" style="margin: 20px auto; text-align: center;"></div>
-											</div>
-										</div>
-									</div>
-									
-									<table class="table table-borderless table-striped">
-										<thead>
-											<tr role="row">
-												<th style="text-align:center;">연령, 성별</th>
-												<th style="text-align:center;">확진자</th>
-												<th style="text-align:center;">확진률</th>
-												<th style="text-align:center;">사망자</th>
-												<th style="text-align:center;">사망률</th>
-											</tr>
-										</thead>
-										<tbody>
-										<c:forEach var="blist" items="${genAge}">
-											<tr>
-												<th scope="col" style="text-align:center;">${blist.gubun}</th>
-												<td style="text-align:center;">+ <fmt:formatNumber value="${blist.confCase}" pattern="#,###,###" /> 명</td>
-												<td style="text-align:center;">${blist.confCaseRate}%</td>
-												<td style="text-align:center;"><fmt:formatNumber value="${blist.death}" pattern="#,###,###" /> 명</td>
-												<td style="text-align:center;">${blist.deathRate}%</td>
-												<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}" />
-												<input type="hidden" name="death" id="death" value="${blist.death}" />
-											</tr>
-										</c:forEach>
-										</tbody>
-									</table>
-								</c:when>
-							</c:choose>
-						</div>
-						
-						<br><br><hr><br><br>
 						
 						<!-- 지역별 확진자 그래프 -->
 						<div class="col-md-12">
@@ -67,7 +20,7 @@
 							</div>
 						</div>
 						
-						<!-- 지역별 확진자 리스트 -->
+						<!-- 지역별 확진자 표 start -->
 						<div class="col-md-12">
 							<table class="table table-borderless table-striped">
 								<thead>
@@ -109,6 +62,61 @@
 								</tbody>
 							</table>
 						</div>
+						<!-- 지역별 확진자 표 end -->
+						
+						<br><br><hr><br><br>
+						
+						<!-- gen/age section -->
+						<div class="col-md-12">
+							<c:set var="list" value="${genAge}"/>
+							<c:choose>
+								<c:when test="${list eq 'n'}">
+									<div class="alert alert-danger" role="alert">
+										<span class="fe fe-alert-circle fe-16 mr-2"></span>현재 공공데이터포털의 성별, 연령별 확진자 정보가 업데이트 되지 않아 정보 확인이 어려운 상태입니다.
+									</div>
+								</c:when>
+								<c:when test="${list ne 'n'}">
+									<!-- 연령별 확진자 그래프 start -->
+									<div class="row my-4">
+										<div class="col-md-12">
+											<h4 style="text-align:center; margin:30px 0px;">연령별 확진자</h4>
+											<div class="chart-box" style="padding:0px 20px;">
+												<div id="columnChart" style="margin: 20px auto; text-align: center;"></div>
+											</div>
+										</div>
+									</div>
+									<!-- 연령별 확진자 그래프 end -->
+									
+									<!-- 성별/연령별 확진자 표 start -->
+									<table class="table table-borderless table-striped">
+										<thead>
+											<tr role="row">
+												<th style="text-align:center;">연령, 성별</th>
+												<th style="text-align:center;">확진자</th>
+												<th style="text-align:center;">확진률</th>
+												<th style="text-align:center;">사망자</th>
+												<th style="text-align:center;">사망률</th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="blist" items="${genAge}">
+											<tr>
+												<th scope="col" style="text-align:center;">${blist.gubun}</th>
+												<td style="text-align:center;"><fmt:formatNumber value="${blist.confCase}" pattern="#,###,###" /> 명</td>
+												<td style="text-align:center;">${blist.confCaseRate}%</td>
+												<td style="text-align:center;"><fmt:formatNumber value="${blist.death}" pattern="#,###,###" /> 명</td>
+												<td style="text-align:center;">${blist.deathRate}%</td>
+												<input type="hidden" name="confCase" id="confCase" value="${blist.confCase}" />
+												<input type="hidden" name="death" id="death" value="${blist.death}" />
+											</tr>
+										</c:forEach>
+										</tbody>
+									</table>
+									<!-- 성별/연령별 확진자 표 end -->
+								</c:when>
+							</c:choose>
+						</div>
+						<!-- gen/age section -->
 					</div>
 				</div>
 			</div>
@@ -121,7 +129,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
 
-<!-- 지역 그래프 -->
+<!-- 지역별 그래프 -->
 <script>
 	var dateArea = [], D = [];
 	<c:forEach var="area" items="${area}">

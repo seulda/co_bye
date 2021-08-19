@@ -7,37 +7,27 @@
 		<div class="alert alert-info" role="alert">
 			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제의 책임은 전적으로 사용자에게 있습니다.
 		</div>
-		<div class="alert alert-dark" role="alert">
-			<div class="Clock">
-				<span>현재 시간&nbsp;:&nbsp;</span><span id="Clockday">00/00/00</span>&nbsp;&nbsp;<span id="Clock">00:00</span>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="alert alert-dark" role="alert"><span>집계 기준 일자&nbsp;:&nbsp;${state.ndate} 00시</span></div>
+				</div>
+				<div class="col-md-6">
+					<div class="alert alert-dark" role="alert">
+						<div class="Clock"><span>현재 시간&nbsp;:&nbsp;</span><span id="Clockday">00/00/00</span>&nbsp;&nbsp;<span id="Clock">00:00</span></div>
+					</div>
+				</div>
 			</div>
-		</div>
 		<c:if test="${e eq 'e'}">
 			<div class="alert alert-danger" role="alert">
 				<span class="fe fe-alert-circle fe-16 mr-2"></span>현재 공공데이터포털의 데이터 응답이 원활하지 않아 상세한 정보 제공이 어려운 상태입니다.
 			</div>
 		</c:if>
-		<br><br>
+		<br>
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<!-- start section -->
 				<div class="row">
-					<div class="col-md-4 col-xl-4 mb-3">
-						<div class="card shadow border-0">
-							<div class="card-body">
-								<div class="row align-items-center">
-									<div class="col-3 text-center">
-										<span class="circle circle-sm bg-primary"><i class="fe fe-16 fe-filter text-white mb-0"></i></span>
-									</div>
-									<div class="col pr-0">
-										<span class="h6 mb-0">집계 기준 일자</span><br>
-										<span class="h4 mb-0">&nbsp;${state.ndate} 0시</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-xl-4 mb-3">
+					<div class="col-md-6 col-xl-6 mb-3">
 						<div class="card shadow border-0">
 							<div class="card-body">
 								<div class="row align-items-center">
@@ -52,7 +42,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-xl-4 mb-3">
+					<div class="col-md-6 col-xl-6 mb-3">
 						<div class="card shadow border-0">
 							<div class="card-body">
 								<div class="row align-items-center">
