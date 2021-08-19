@@ -7,6 +7,11 @@
 		<div class="alert alert-info" role="alert">
 			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제의 책임은 전적으로 사용자에게 있습니다.
 		</div>
+		<div class="alert alert-dark" role="alert">
+			<div class="Clock">
+				<span>현재 시간&nbsp;:&nbsp;</span><span id="Clockday">00/00/00</span>&nbsp;&nbsp;<span id="Clock">00:00</span>
+			</div>
+		</div>
 		<c:if test="${e eq 'e'}">
 			<div class="alert alert-danger" role="alert">
 				<span class="fe fe-alert-circle fe-16 mr-2"></span>현재 공공데이터포털의 데이터 응답이 원활하지 않아 상세한 정보 제공이 어려운 상태입니다.
@@ -95,5 +100,35 @@
 </main>
 <!-- main -->
 
+<script>
+	function Clock() {
+		var date = new Date();
+		var YYYY = String(date.getFullYear());
+		var MM = String(date.getMonth() + 1);
+		var DD = Zero(date.getDate());
+		var hh = Zero(date.getHours());
+		var mm = Zero(date.getMinutes());
+		var ss = Zero(date.getSeconds());
+		var Week = Weekday(); Write(YYYY, MM, DD, hh, mm, ss, Week);
+		//시계에 1의자리수가 나올때 0을 넣어주는 함수 (ex : 1초 -> 01초)
+		function Zero(num) {
+			return (num < 10 ? '0' + num : '' + num);
+		}
+		//요일을 추가해주는 함수
+		function Weekday() {
+			var Week = ['일', '월', '화', '수', '목', '금', '토'];
+			var Weekday = date.getDay(); return Week[Weekday];
+		}
+		//시계부분을 써주는 함수
+		function Write(YYYY, MM, DD, hh, mm, ss, Week) {
+			var Clockday = document.getElementById("Clockday");
+			var Clock = document.getElementById("Clock");
+			Clockday.innerText = YYYY + '/' + MM + '/' + DD + '(' + Week + ')';
+			Clock.innerText = hh + ':' + mm + ':' + ss;
+		}
+	}
+	setInterval(Clock, 1000);
+	//1초(1000)마다 Clock함수를 재실행 한다
+</script>
 
 <%@ include file="../layout/footer.jsp"%>

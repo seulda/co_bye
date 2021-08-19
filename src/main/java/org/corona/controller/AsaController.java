@@ -27,31 +27,34 @@ public class AsaController {
 	public String asaList(Model model) throws Exception {
 		
 		String td = as.today();
-		String yd = as.today();
+		String yd = ss.yday(td);
 		String checkArea = as.getAreaApi(td, td);
-		String checkGenAge = as.getGenAgeApi(yd, yd);
+		String checkGenAge = as.getGenAgeApi(td, yd);
 		if (checkArea.equals("e") || checkGenAge.equals("e")) { // api error
 			model.addAttribute("state", ss.Crawler());
 			model.addAttribute("e", "e");
 			return "/layout/info";
 		}
 		if (checkGenAge.equals("n")) { // GenAgeApi null check 01
-			yd = ss.yday(as.today());
+			td = ss.yday(td);
+			yd = ss.yday(yd);
+			checkGenAge = as.getGenAgeApi(td, yd);
 		}
-		
-		// 지역
-		ArrayList<AreaVO> area = as.asaArea(checkArea);
-		model.addAttribute("area", area);
 		
 		// 성별연령
 		if (checkGenAge.equals("n")) { // GenAgeApi null check 02
 			model.addAttribute("genAge", "n");
 		} else {
-			ArrayList<GenAgeVO> genAge = as.asaGenAge(as.getGenAgeApi(yd, yd));
+			ArrayList<GenAgeVO> genAge = as.asaGenAge(as.getGenAgeApi(td, yd));
 			model.addAttribute("genAge", genAge);
 		}
+
+		// 지역
+		ArrayList<AreaVO> area = as.asaArea(checkArea);
+		model.addAttribute("area", area);
 		
-		model.addAttribute("td", td);
+		model.addAttribute("td", as.today());
+		//model.addAttribute("ga_td", td);
 		
 		return "/ASA/asa";
 

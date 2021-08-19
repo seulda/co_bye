@@ -25,10 +25,6 @@ public interface StateService {
 	// 일자별 변화량 추가
 	public ArrayList<StateVO> aCovidState(ArrayList<StateVO> list) throws ParseException;
 	
-	// 지역
-	public String getAreaApi(String startCreateDt, String endCreateDt) throws Exception;
-	public ArrayList<AreaVO> asaArea(String result);
-	
 	// Jsoup html parse
 	public ncovVO Crawler();
 	
