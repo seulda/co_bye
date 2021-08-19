@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 
 
 @Controller
 @RequestMapping
 @AllArgsConstructor
+@Log4j
 public class StateController {
 	
 	private StateService ss;
@@ -31,14 +33,16 @@ public class StateController {
 	@GetMapping("/")
 	public String test(Model model) throws Exception {
 		
+		log.info("Main Page load");
+		
 		String td = ss.today();	// 기준일 (=종료일)
 		String bd = ss.day(td);	// 기준일-10일 (=시작일)
 		
 		String checkCovid = ss.getCovidStateApi(bd, td);
 		String checkArea = as.getAreaApi(td, td);
 		if (checkCovid.equals("e") || checkArea.equals("e")) { // api error
-			if (checkCovid.equals("e")) { System.out.println("checkCovid: " + checkCovid); }
-			if (checkArea.equals("e")) { System.out.println("checkArea: " + checkArea); }
+			if (checkCovid.equals("e")) { log.info("checkCovid: " + checkCovid); }
+			if (checkArea.equals("e")) { log.info("checkArea: " + checkArea); }
 			model.addAttribute("state", ss.Crawler());
 			model.addAttribute("e", "e");
 			return "/layout/info";

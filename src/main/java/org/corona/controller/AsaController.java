@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 
 @Controller
 @AllArgsConstructor
 @RequestMapping
+@Log4j
 public class AsaController {
 	
 	private asaService as;
@@ -31,6 +33,8 @@ public class AsaController {
 		String checkArea = as.getAreaApi(td, td);
 		String checkGenAge = as.getGenAgeApi(td, yd);
 		if (checkArea.equals("e") || checkGenAge.equals("e")) { // api error
+			if (checkArea.equals("e")) { log.info("checkArea: " + checkArea); }
+			if (checkGenAge.equals("e")) { log.info("checkGenAge: " + checkGenAge); }
 			model.addAttribute("state", ss.Crawler());
 			model.addAttribute("e", "e");
 			return "/layout/info";
@@ -43,6 +47,7 @@ public class AsaController {
 		
 		// 성별연령
 		if (checkGenAge.equals("n")) { // GenAgeApi null check 02
+			log.info("checkGenAge is null: " + checkGenAge);
 			model.addAttribute("genAge", "n");
 		} else {
 			ArrayList<GenAgeVO> genAge = as.asaGenAge(as.getGenAgeApi(td, yd));

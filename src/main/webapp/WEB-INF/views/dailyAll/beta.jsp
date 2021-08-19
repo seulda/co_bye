@@ -4,10 +4,10 @@
 
 <main role="main" class="main-content">
 	<div class="container-fluid">
-		<div class="alert alert-info" role="alert"><span class="fe fe-alert-circle fe-16 mr-2"></span>실시간 확진자의 집계는 실제 확진자 수와 다를 수 있으며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;해당 데이터를 사용하면서 발생하는 문제의 책임은 전적으로 사용자에게 있습니다.</div><br>
+		<div class="alert alert-info" role="alert"><span class="fe fe-alert-circle fe-16 mr-2"></span>실시간 확진자의 집계는 실제 확진자 수와 다를 수 있으며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;해당 데이터를 사용하면서 발생하는 문제의 책임은 전적으로 사용자에게 있습니다.</div>
 		<div class="alert alert-dark" role="alert">
 			<div class="Clock"><span>현재 시간&nbsp;:&nbsp;</span><span id="Clockday">00/00/00</span>&nbsp;&nbsp;<span id="Clock">00:00</span></div>
-		</div>
+		</div><br>
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
