@@ -7,7 +7,7 @@
 	<main role="main" class="main-content">
 		<div class="container-fluid">
 			<fmt:parseDate value="${td}" var="date" pattern="yyyyMMdd" />
-			<div class="alert alert-primary" role="alert">&nbsp;<fmt:formatDate value="${date}" pattern="MM월 dd일"/> 기준 | 지역별 및 성별/연령별 확진자를 확인할 수 있습니다.</div>
+			<div class="alert alert-primary" role="alert">&nbsp;<fmt:formatDate value="${date}" pattern="MM월 dd일"/> 기준&nbsp;&nbsp;|&nbsp;&nbsp;지역별 및 성별/연령별 확진자를 확인할 수 있습니다.</div>
 			<div class="row justify-content-center">
 				<div class="col-12">
 					<div class="row">
@@ -131,17 +131,16 @@
 
 <!-- 지역별 그래프 -->
 <script>
-	var dateArea = [], D = [];
+	var areaData = [], D = [];
 	<c:forEach var="area" items="${area}">
-		var a = "${area.gubun}";
-	    var a1 = '${area.incDec}';
-	    dateArea.push(a);
-	    D.push(a1);
+	    areaData.push('${area.gubun}');
+	    D.push('${area.incDec}');
 	</c:forEach>
-	dateArea.reverse();
+	areaData.reverse();
+	areaData.shift();
 	D.reverse();
-	dateArea.shift();
 	D.shift();
+	
 	var columnChart, columnChartoptions = {
         series: [{
             name: "확진자",
@@ -151,7 +150,7 @@
             type: "bar",
             height: 350,
             stacked: !1,
-            columnWidth: "90%",
+            columnWidth: "95%",
             zoom: {
                 enabled: !1
             },
@@ -194,7 +193,7 @@
           },
         xaxis: {
             /* type: "datetime", */
-            categories: dateArea,
+            categories: areaData,
             labels: {
                 show: !0,
                 trim: !1,
@@ -287,15 +286,14 @@
 
 <!-- 연령별 그래프 -->
 <script>
-	var dateArea = [], D = [];
+	var age = [], D = [];
 	<c:forEach var="genAge" items="${genAge}">
-		var a = "${genAge.gubun}";
-	    var a1 = '${genAge.confCase}';
-	    dateArea.push(a);
-	    D.push(a1);
+	    age.push('${genAge.gubun}');
+	    D.push('${genAge.confCase}');
 	</c:forEach>
 	D.length = 9;
-	dateArea.length = 9;
+	age.length = 9;
+	
 	var columnChart, columnChartoptions = {
         series: [{
             name: "확진자",
@@ -305,7 +303,7 @@
             type: "bar",
             height: 350,
             stacked: !1,
-            columnWidth: "90%",
+            columnWidth: "95%",
             zoom: {
                 enabled: !1
             },
@@ -348,7 +346,7 @@
           },
         xaxis: {
             /* type: "datetime", */
-            categories: dateArea,
+            categories: age,
             labels: {
                 show: !0,
                 trim: !1,

@@ -168,50 +168,11 @@
 					<!-- .col -->
 				</div>
 				<!-- end section -->
-				
-				<!-- <br><br><hr><br> -->
-				
-				<!-- 지역별 확진자 리스트 start -->
-				<%-- <div class="col-md-12">
-					<h4 style="text-align:center; margin:30px 0px;">지역별 코로나 확진 현황</h4>
-					<fmt:parseDate value="${arealist[1].createDt}" var="aDate" pattern="yyyy-MM-dd HH:mm:ss" />
-					<p style="text-align:right;">기준일 : <fmt:formatDate value="${aDate}" pattern="MM월 dd일"/></p>
-					<table class="table table-borderless table-striped">
-						<thead>
-							<tr role="row">
-								<th style="text-align:center;">지역</th>
-								<th style="text-align:center;">추가 확진자</th>
-								<th style="text-align:center;">누적 확진자</th>
-								<th style="text-align:center;">격리중</th>
-								<th style="text-align:center;">격리 해제</th>
-								<th style="text-align:center;">사망자 수</th>
-								<th style="text-align:center;">지역 발생</th>
-								<th style="text-align:center;">해외 유입</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="list" items="${arealist}">
-								<tr>
-									<th scope="col" style="text-align:center;">${list.gubun}</th>
-									<td style="text-align:center;">+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>			<!-- 전체 확진자 / 누적 확진자 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>		<!-- 격리중 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.isolClearCnt}" pattern="#,###,###" /></td>	<!-- 격리해제 --> 
-									<td style="text-align:center;"><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>		<!-- 사망자 수  -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.localOccCnt}" pattern="#,###,###" /></td>	<!-- 지역 발생 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div> --%>
-				<!-- 지역별 확진자 리스트 end -->
 
 				<br><br>
 				<hr>
 				
 				<div class="row">
-					<!-- Recent orders -->
 					<div class="col-md-12">
 						<h4 style="text-align:center; margin:30px 0px;">최근 일별 코로나 누적 확진 현황</h4>
 						<table class="table table-borderless table-striped">
@@ -238,7 +199,6 @@
 							</tbody>
 						</table>
 					</div>
-					<!-- / .col-md-3 -->
 				</div>
 				<!-- end section -->
 			</div>
@@ -341,15 +301,15 @@
 
 <script>
 	var dateArea = [], D = [];
-	<c:forEach var="dlist" items="${alist}">
-		var aa = '${dlist.stateDt}';
-		var a = aa.substr(4,2) + "월 " + aa.substr(6,2) + "일";
-	    var a1 = '${dlist.ADecideCnt}';
-	    dateArea.push(a);
-	    D.push(a1);
+	<c:forEach var="list" items="${alist}">
+		var dt = '${list.stateDt}';
+		dt = dt.substr(4,2) + "월 " + dt.substr(6,2) + "일";
+	    dateArea.push(dt);
+	    D.push('${list.ADecideCnt}');
 	</c:forEach>
 	dateArea.reverse();
 	D.reverse();
+	
 	var columnChart, columnChartoptions = {
         series: [{
             name: "일일 확진자",
@@ -491,37 +451,6 @@
     },
     columnChartCtn = document.querySelector("#columnChart");
 	columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
-</script>
-
-<script>
-	function Clock() {
-		var date = new Date();
-		var YYYY = String(date.getFullYear());
-		var MM = String(date.getMonth() + 1);
-		var DD = Zero(date.getDate());
-		var hh = Zero(date.getHours());
-		var mm = Zero(date.getMinutes());
-		var ss = Zero(date.getSeconds());
-		var Week = Weekday(); Write(YYYY, MM, DD, hh, mm, ss, Week);
-		//시계에 1의자리수가 나올때 0을 넣어주는 함수 (ex : 1초 -> 01초)
-		function Zero(num) {
-			return (num < 10 ? '0' + num : '' + num);
-		}
-		//요일을 추가해주는 함수
-		function Weekday() {
-			var Week = ['일', '월', '화', '수', '목', '금', '토'];
-			var Weekday = date.getDay(); return Week[Weekday];
-		}
-		//시계부분을 써주는 함수
-		function Write(YYYY, MM, DD, hh, mm, ss, Week) {
-			var Clockday = document.getElementById("Clockday");
-			var Clock = document.getElementById("Clock");
-			Clockday.innerText = YYYY + '/' + MM + '/' + DD + '(' + Week + ')';
-			Clock.innerText = hh + ':' + mm + ':' + ss;
-		}
-	}
-	setInterval(Clock, 1000);
-	//1초(1000)마다 Clock함수를 재실행 한다
 </script>
 
 

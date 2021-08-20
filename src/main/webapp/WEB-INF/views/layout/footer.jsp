@@ -9,6 +9,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/Chart.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/clock.js"></script>
   
   <script>
     /* defind global options */
