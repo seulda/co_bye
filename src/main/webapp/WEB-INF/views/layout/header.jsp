@@ -9,7 +9,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="favicon.ico">
+		
+		<meta property="og:image" content="https://user-images.githubusercontent.com/57322002/130636145-acc1f0fc-9d48-407f-95e6-061f1df11bfe.jpg">
+  		<meta property="og:title" content="COBYE_김다슬">
+		<meta property="og:description" content="코로나19 확진자 정보를 확인하세요.">
+		
+		<link rel="icon" href="https://user-images.githubusercontent.com/57322002/130636298-0ed7099f-8267-4ca4-9dc8-b357fad113ee.png">
 		<title>COBYE</title>
 		<!-- Fonts CSS -->
 		<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
