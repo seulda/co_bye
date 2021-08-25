@@ -12,6 +12,8 @@
 * Info Page - API 응답 에러에 대비하여 (Redirection) 기본 정보 페이지 추가 (2021.08.15)
 * 지역/성별/연령별 확진자 Page - view 일부 수정, controller refactoring (2021.08.17-19)
 * Page 일부 - 현재시각 view 추가 (2021.08.19)
+* open graph - SNS로 사이트 주소 공유시 보여지는 사이트 정보 및 사진 추가 (2021.08.24)
+* exception Page - exception 발생시 Page 추가 (2021.08.25)
 
 <br>
 
