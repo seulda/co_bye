@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="https://www.seoul.go.kr/res_newseoul/css/corona_vaccine.css?20210702">
 <link rel="stylesheet" href="https://www.seoul.go.kr/res_newseoul/css/jquery-ui.min.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/res_newseoul/js/jquery-1.12.2.min.js"></script>
 <script src="/res_newseoul/js/jquery-ui.min.js"></script>
 <script src="/res_newseoul/js/comapp.js?20200211164103"></script>

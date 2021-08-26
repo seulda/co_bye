@@ -216,7 +216,7 @@
 <!-- main -->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/clock.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>

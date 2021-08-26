@@ -27,6 +27,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app-light.css" id="lightTheme">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app-dark.css" id="darkTheme" disabled>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/accordions.css">
+		<!-- JQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	</head>
 
 	<body class="vertical light">

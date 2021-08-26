@@ -90,5 +90,6 @@
 </main>
 <!-- main -->
 
+<script src="${pageContext.request.contextPath}/resources/js/clock.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
