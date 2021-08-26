@@ -17,9 +17,19 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class BoardController {
 	
-//	@GetMapping("/board")
-//	public String board() {
-//		return "/board/board";
-//	}
+	@GetMapping("/board")
+	public String board() {
+		return "/board/board";
+	}
+	
+	@GetMapping("/view")
+	public String view() {
+		return "/board/view";
+	}
+	
+	@GetMapping("/write")
+	public String write() {
+		return "/board/write";
+	}
 	
 }
