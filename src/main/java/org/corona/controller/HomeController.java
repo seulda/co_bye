@@ -45,10 +45,9 @@ public class HomeController {
 		return "/layout/info";
 	}
 	
-	@GetMapping("/test")
-	public String test(Model model) {
-		model.addAttribute("state", ss.Crawler());
-		return "/layout/test";
+	@GetMapping("/board")
+	public String board() {
+		return "/board/board";
 	}
 	
 }

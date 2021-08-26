@@ -4,4 +4,59 @@
 
 <mapper namespace="org.corona.mapper.BoardMapper">
 
+	<!-- 게시글 목록 -->
+	<select id="list" resultType="org.corona.domain.BoardVO">
+		select id, b_title, b_time, b_cnt
+		from board
+	</select>
+	
+	<!-- 게시글 id/pw check -->
+	<select id="check" resultType="int">
+		select count(*)
+		from board
+		where id=#{id} and pw=#{pw} and b_num=#{b_num}
+	</select>
+	
+	<!-- 게시글 보기 -->
+	<select id="view" resultType="org.corona.domain.BoardVO">
+		select * 
+		from board
+		where id=#{id} and pw=#{pw} and b_num=#{b_num}
+	</select>
+	
+	<!-- 게시글 조회수 -->
+	<update id="viewCount" parameterType="int">
+		update board set b_cnt = b_cnt + 1
+		where b_num = #{b_num}
+	</update>
+	
+	<!-- 게시글 작성 -->
+	<insert id="create">
+		insert into board (
+			id,
+			pw,
+			b_title,
+			b_content
+		) values (
+			#{id},
+			#{pw},
+			#{b_title},
+			#{b_content}
+		)
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="update">
+		update board set
+			b_title = #{b_title},
+			b_content = #{b_content}
+		where b_num = #{b_num}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from board
+		where b_num = #{b_num}
+	</delete>
+	
 </mapper>
