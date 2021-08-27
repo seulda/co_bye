@@ -1,6 +1,6 @@
 package org.corona.mapper;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.corona.domain.BoardVO;
@@ -10,7 +10,7 @@ import org.corona.domain.BoardVO;
 public interface BoardMapper {
 
 	// 게시글 목록
-	public List<BoardVO> list(BoardVO vo);
+	public ArrayList<BoardVO> list();
 
 	// 게시글 id/pw check
 	public int check(String id, String pw, int b_num);

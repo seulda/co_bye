@@ -1,7 +1,7 @@
 package org.corona.service;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -21,9 +21,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardVO> list(BoardVO vo) {
-		
-		return null;
+	public ArrayList<BoardVO> list() {
+		ArrayList<BoardVO> list = om.list();
+		return list;
 	}
 
 	@Override
