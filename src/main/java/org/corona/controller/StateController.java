@@ -33,8 +33,6 @@ public class StateController {
 	@GetMapping("/")
 	public String test(Model model) throws Exception {
 		
-		log.info("Main Page load");
-		
 		String td = ss.today();	// 기준일 (=종료일)
 		String bd = ss.day(td);	// 기준일-10일 (=시작일)
 		
@@ -67,9 +65,8 @@ public class StateController {
 			model.addAttribute("n", "n");
 		} else {
 			model.addAttribute("dlist", dlist);
+			model.addAttribute("mCnt", ss.msgCount(dlist));
 		}
-		
-		model.addAttribute("mCnt", ss.msgCount(dlist));
 				
 		return "/dailyAll/beta";
 	}
