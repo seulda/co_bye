@@ -8,7 +8,7 @@
 			<div class="col-12">
 				<div class="card shadow mb-4">
 					<div class="card-header">
-						<strong class="card-title">문의 사항을 입력해주세요.</strong>
+						<strong class="card-title">문의 사항을 입력해주세요. ID/PW는 분실시 찾을 수 없으니 메모해두길 권장합니다.</strong>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -86,13 +86,9 @@
 			} 
 			else {
 				alert("확인되었습니다.");
-				/* $.ajax({
+				$.ajax({
 					type: "POST",
-					url: "/loginCheck",
-					headers: {
-						"Content-Type": "application/json",
-		                "X-HTTP-Method-Override": "POST"
-					},
+					url: "/write",
 					data : {
 						"id" : $("#id").val(),
 						"pw" : $("#pw").val(),
@@ -106,7 +102,7 @@
 							//self.location="/testList";
 						}
 					}
-				}); */
+				});
 			}
 			
 		});

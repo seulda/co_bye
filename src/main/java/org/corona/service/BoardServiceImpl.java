@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO view(int b_num) {
+	public BoardVO read(int b_num) {
 		
 		return null;
 	}

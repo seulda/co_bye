@@ -36,7 +36,7 @@ public class BoardController {
 		return "/board/view";
 	}
 	
-	@GetMapping("/write")
+	@GetMapping("/new")
 	public String write() {
 		return "/board/write";
 	}

@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- 게시글 보기 -->
-	<select id="view" resultType="org.corona.domain.BoardVO">
+	<select id="read" resultType="org.corona.domain.BoardVO">
 		select * 
 		from board
 		where id=#{id} and pw=#{pw} and b_num=#{b_num}

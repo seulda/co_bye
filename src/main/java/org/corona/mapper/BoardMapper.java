@@ -16,7 +16,7 @@ public interface BoardMapper {
 	public int check(String id, String pw, int b_num);
 	
 	// 게시글 보기
-	public BoardVO view(int b_num);
+	public BoardVO read(int b_num);
 	
 	// 게시글 조회수
 	public void viewCount(int b_num);
