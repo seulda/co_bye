@@ -8,13 +8,15 @@
 			<div class="col-12">
 				<div class="card shadow mb-4">
 					<div class="card-header">
-						<strong class="card-title" style="font-size:20px;">여기가 글 제목</strong>
+						<!-- <strong class="card-title" style="font-size:20px;">여기가 글 제목</strong> -->
+						<strong class="card-title" style="font-size:20px;">${read.b_title}</strong>
 					</div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group mb-6">
-									<span>여기가 글 내용</span>
+									<!-- <span>여기가 글 내용</span> -->
+									<span>${read.b_content}</span>
 								</div>
 							</div>
 							<div class="col-md-12">

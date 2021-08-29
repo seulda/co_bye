@@ -27,15 +27,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int check(String id, String pw, int b_num) {
+	public int check(BoardVO bvo) {
+//		String id = bvo.getId();
+//		String pw = bvo.getPw();
+//		int b_num = bvo.getB_num();
 		
-		return 0;
+		System.out.println("serviceImpl check bvo: " + bvo);
+		
+		return om.check(bvo);
 	}
 
 	@Override
-	public BoardVO read(int b_num) {
-		
-		return null;
+	public BoardVO read(BoardVO bvo) {
+		return om.read(bvo);
 	}
 
 	@Override

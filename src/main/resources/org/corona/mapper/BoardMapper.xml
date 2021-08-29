@@ -6,22 +6,22 @@
 
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="org.corona.domain.BoardVO">
-		select id, b_title, b_time, b_cnt
+		select b_num, id, b_title, b_time, b_cnt
 		from board
 	</select>
 	
 	<!-- 게시글 id/pw check -->
-	<select id="check" resultType="int">
+	<select id="check" parameterType="org.corona.domain.BoardVO" resultType="int">
 		select count(*)
 		from board
 		where id=#{id} and pw=#{pw} and b_num=#{b_num}
 	</select>
 	
 	<!-- 게시글 보기 -->
-	<select id="read" resultType="org.corona.domain.BoardVO">
+	<select id="read" parameterType="org.corona.domain.BoardVO" resultType="org.corona.domain.BoardVO">
 		select * 
 		from board
-		where id=#{id} and pw=#{pw} and b_num=#{b_num}
+		where b_num=#{b_num}
 	</select>
 	
 	<!-- 게시글 조회수 -->

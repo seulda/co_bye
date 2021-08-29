@@ -13,10 +13,10 @@ public interface BoardMapper {
 	public ArrayList<BoardVO> list();
 
 	// 게시글 id/pw check
-	public int check(String id, String pw, int b_num);
+	public int check(BoardVO bvo);
 	
 	// 게시글 보기
-	public BoardVO read(int b_num);
+	public BoardVO read(BoardVO bvo);
 	
 	// 게시글 조회수
 	public void viewCount(int b_num);
