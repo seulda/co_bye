@@ -6,8 +6,9 @@
 <main role="main" class="main-content">
 	<div class="container-fluid">
 		<div class="alert alert-info" role="alert">
-			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제는 전적으로 사용자에게 있습니다.
-		</div><br><br>
+			<span class="fe fe-alert-circle fe-16 mr-2"></span>COBYE의 데이터는 재사용이 가능하며, 공적인 효력이 없음을 안내합니다.&nbsp;&nbsp;&nbsp;또한 해당 데이터를 사용하면서 발생하는 문제의 책임은 전적으로 사용자에게 있습니다.
+		</div>
+		<br><br>
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
@@ -24,8 +25,6 @@
 										<div class="col pr-0">
 											<p class="small text-muted mb-0">실시간 추가 확진자</p>
 											<a href="/beta"><span class="h3 mb-0 text-white">&nbsp;BETA SERVICE</span></a>
-											<%-- <span class="h3 mb-0 text-white">&nbsp;<fmt:formatNumber value="${adec1}" pattern="#,###,###" /> 명</span> --%>
-											<!-- <span class="small text-muted">+5.5%</span> -->
 										</div>
 									</div>
 								</div>
@@ -44,7 +43,7 @@
 											<p class="small text-muted mb-0">어제 확진자</p>
 											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;&nbsp;
 											<c:if test="${(alist[0].ADecideCnt-alist[1].ADecideCnt) > 0}"><span class="small text-success">+</span></c:if>
-											<span class="small text-success">${alist[0].ADecideCnt-alist[1].ADecideCnt}명</span>
+											<span class="small text-success"><fmt:formatNumber value="${alist[0].ADecideCnt-alist[1].ADecideCnt}" pattern="#,###,###" />명</span>
 										</div>
 									</div>
 								</div>
@@ -64,7 +63,7 @@
 											<div class="row align-items-center no-gutters">
 												<div class="col-auto">
 													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].decideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;
-													<span class="small text-success">+ ${alist[0].ADecideCnt}명</span>
+													<span class="small text-success">+ <fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" />명</span>
 												</div>
 											</div>
 										</div>
@@ -132,9 +131,6 @@
 				<!-- korea image start -->
 				<div class="col-md-12">
 				<h4 style="text-align:center; margin:30px 0px;">전날 지역별 코로나 확진 현황</h4>
-					<%-- <div style="width:65%; overflow:hidden; text-align:center; margin:auto;">
-						<img style="max-width:100%; display:block;" src="${pageContext.request.contextPath}/resources/image/ko.png"/>
-					</div> --%>
 					<div class="koArea">
 						<span class="koAreaGage" style="left:8%; top:20%;">${arealist[0].gubun}<br>${arealist[0].incDec}</span>		<!-- 검역 -->
 						<span class="koAreaGage" style="left:20%; top:88%;">${arealist[1].gubun}<br>${arealist[1].incDec}</span>	<!-- 제주 -->
@@ -172,90 +168,11 @@
 					<!-- .col -->
 				</div>
 				<!-- end section -->
-				
-				<!-- <br><br><hr><br> -->
-				
-				<!-- 지역별 확진자 리스트 start -->
-				<%-- <div class="col-md-12">
-					<h4 style="text-align:center; margin:30px 0px;">지역별 코로나 확진 현황</h4>
-					<fmt:parseDate value="${arealist[1].createDt}" var="aDate" pattern="yyyy-MM-dd HH:mm:ss" />
-					<p style="text-align:right;">기준일 : <fmt:formatDate value="${aDate}" pattern="MM월 dd일"/></p>
-					<table class="table table-borderless table-striped">
-						<thead>
-							<tr role="row">
-								<th style="text-align:center;">지역</th>
-								<th style="text-align:center;">추가 확진자</th>
-								<th style="text-align:center;">누적 확진자</th>
-								<th style="text-align:center;">격리중</th>
-								<th style="text-align:center;">격리 해제</th>
-								<th style="text-align:center;">사망자 수</th>
-								<th style="text-align:center;">지역 발생</th>
-								<th style="text-align:center;">해외 유입</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="list" items="${arealist}">
-								<tr>
-									<th scope="col" style="text-align:center;">${list.gubun}</th>
-									<td style="text-align:center;">+ <fmt:formatNumber value="${list.incDec}" pattern="#,###,###" /></td>		<!-- 전일 대비 / 추가 확진자 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.defCnt}" pattern="#,###,###" /></td>			<!-- 전체 확진자 / 누적 확진자 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.isolIngCnt}" pattern="#,###,###" /></td>		<!-- 격리중 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.isolClearCnt}" pattern="#,###,###" /></td>	<!-- 격리해제 --> 
-									<td style="text-align:center;"><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>		<!-- 사망자 수  -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.localOccCnt}" pattern="#,###,###" /></td>	<!-- 지역 발생 -->
-									<td style="text-align:center;"><fmt:formatNumber value="${list.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div> --%>
-				<!-- 지역별 확진자 리스트 end -->
 
 				<br><br>
-				
-				<!-- info small box -->
-				<%-- <div class="row">
-					<div class="col-md-6">
-						<div class="card shadow mb-4">
-							<div class="card-body">
-								<p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Today</strong></p>
-								<h3 class="mb-0">최근 10일 확진자 추이</h3>
-								<p class="text-muted">+18.9% Last week</p>
-								<div class="chart-box mt-n5">
-									<div id="lineChartWidget"></div>
-								</div>
-								<div class="row">
-									<div class="col-4 text-center mt-3">
-										<p class="mb-1 text-muted">Completions</p>
-										<h6 class="mb-0">26</h6>
-										<span class="small text-muted">+20%</span>
-										<span class="fe fe-arrow-up text-success fe-12"></span>
-									</div>
-									<div class="col-4 text-center mt-3">
-										<p class="mb-1 text-muted">Goal Value</p>
-										<h6 class="mb-0">$260</h6>
-										<span class="small text-muted">+6%</span>
-										<span class="fe fe-arrow-up text-success fe-12"></span>
-									</div>
-									<div class="col-4 text-center mt-3">
-										<p class="mb-1 text-muted">Conversion</p>
-										<h6 class="mb-0">6%</h6>
-										<span class="small text-muted">-2%</span>
-										<span class="fe fe-arrow-down text-danger fe-12"></span>
-									</div>
-								</div>
-							</div>
-							<!-- .card-body -->
-						</div>
-						<!-- .card -->
-					</div>
-					<!-- .col-md -->
-				</div> --%>
-				<!-- / .row -->
-				
 				<hr>
+				
 				<div class="row">
-					<!-- Recent orders -->
 					<div class="col-md-12">
 						<h4 style="text-align:center; margin:30px 0px;">최근 일별 코로나 누적 확진 현황</h4>
 						<table class="table table-borderless table-striped">
@@ -282,19 +199,24 @@
 							</tbody>
 						</table>
 					</div>
-					<!-- / .col-md-3 -->
 				</div>
 				<!-- end section -->
 			</div>
 		</div>
 		<!-- .row -->
+		<br><br>
+		<div class="alert alert-dark" role="alert">
+			<div class="Clock">
+				<span>현재 시간&nbsp;:&nbsp;</span><span id="Clockday">00/00/00</span>&nbsp;&nbsp;<span id="Clock">00:00</span>
+			</div>
+		</div>
 	</div>
 	<!-- .container-fluid -->
 </main>
 <!-- main -->
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/clock.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
@@ -379,15 +301,15 @@
 
 <script>
 	var dateArea = [], D = [];
-	<c:forEach var="dlist" items="${alist}">
-		var aa = '${dlist.stateDt}';
-		var a = aa.substr(4,2) + "월 " + aa.substr(6,2) + "일";
-	    var a1 = '${dlist.ADecideCnt}';
-	    dateArea.push(a);
-	    D.push(a1);
+	<c:forEach var="list" items="${alist}">
+		var dt = '${list.stateDt}';
+		dt = dt.substr(4,2) + "월 " + dt.substr(6,2) + "일";
+	    dateArea.push(dt);
+	    D.push('${list.ADecideCnt}');
 	</c:forEach>
 	dateArea.reverse();
 	D.reverse();
+	
 	var columnChart, columnChartoptions = {
         series: [{
             name: "일일 확진자",
@@ -426,7 +348,7 @@
                 enableShades: !1,
                 endingShape: "rounded",
                 dataLabels: {
-					position: 'top', // top, center, bottom
+					position: 'top',
 				},
             }
         },

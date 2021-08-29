@@ -19,12 +19,12 @@ public interface BoardService {
 	public void viewCount(int b_num);
 	
 	// 게시글 작성
-	public void create(int b_num);
+	public int create(BoardVO bvo);
 	
 	// 게시글 수정
-	public void update(int b_num);
+	public int update(int b_num);
 	
 	// 게시글 삭제
-	public void delete(int b_num);
+	public int delete(int b_num);
 	
 }

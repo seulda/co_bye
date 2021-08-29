@@ -46,7 +46,7 @@
 								</div> -->
 							</div>
 							<div class="col-md-12"><br>
-								<button id="btn" class="btn btn-lg btn-primary px-5">작성</button>
+								<button id="btn" class="btn btn-lg btn-primary px-5">완료</button>
 								<button id="cBtn" class="btn btn-lg btn-primary px-5" onClick="location.href='/board'">취소</button>
 							</div>
 						</div>
@@ -85,36 +85,23 @@
 				alert("내용을 입력해주세요.");
 			} 
 			else {
+				alert("확인되었습니다.");
 				$.ajax({
 					type: "POST",
 					url: "/write",
-					headers: {
-						"Content-Type": "application/json",
-		                "X-HTTP-Method-Override": "POST"
-					},
-					data : JSON.stringify({
+					data : {
 						"id" : $("#id").val(),
 						"pw" : $("#pw").val(),
-						"b_title" : $("#title").val(),
-						"b_content" : $("#content").val()
-					}),
-					dataType: "text",
-					success: function(data) {
-						console.log("result : " + data);
-						if ($.trim(data) === "success") {
-							alert("문의가 등록되었습니다.");
-						} else if ($.trim(data) === "fail") {
-							alert("등록에 실패하였습니다.");
-						} else {
-							alert("무엇인가 잘못되었습니다.");
-						}
+						"title" : $("#title").val(),
+						"content" : $("#content").val()
 					},
-					error : function(error) {
-				        alert("에러가 발생하였습니다.");
-				    },
-				    complete : function() {
-				    	self.location="/board";
-				    }
+					dataType: "text",
+					success: function() {
+							alert("문의가 등록되었습니다.");
+							self.location="/test";
+							//self.location="/testList";
+						}
+					}
 				});
 			}
 			

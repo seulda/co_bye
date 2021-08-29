@@ -31,7 +31,7 @@
 	</update>
 	
 	<!-- 게시글 작성 -->
-	<insert id="create">
+	<insert id="create" parameterType="org.corona.domain.BoardVO">
 		insert into board (
 			id,
 			pw,

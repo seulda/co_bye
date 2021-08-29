@@ -45,21 +45,20 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void create(int b_num) {
-		
-		
+	public int create(BoardVO bvo) {
+		return om.create(bvo);
 	}
 
 	@Override
-	public void update(int b_num) {
+	public int update(int b_num) {
 		
-		
+		return 0;
 	}
 
 	@Override
-	public void delete(int b_num) {
+	public int delete(int b_num) {
 		
-		
+		return 0;
 	}
 
 }
