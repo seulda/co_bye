@@ -43,7 +43,7 @@
 								</div>
 								<div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#accordion1" style="">
 									<div class="card-body">
-										<form action="/view" method="post" id="frm${status.count}" name="frm${status.count}">
+										<form action="/view" method="post" id="frm" name="frm">
 											<input type="hidden" id="num" value="${status.count}" />
 											<input type="hidden" id="b_num" value="${b.b_num}" />
 											<input type="text" id="id" placeholder="ID를 입력해주세요." />
@@ -71,8 +71,7 @@
 		$('#checkBtn').click(function() {
 			
 			var num = $.trim($('#num').val());
-			var set = '#frm' + num;
-
+			
 			alert("click checkBtn");
 
 			if ($.trim($('#id').val()) === "") {
@@ -98,7 +97,7 @@
 					success : function(data) {
 						console.log("result : " + data);
 						if ($.trim(data) === "success") {
-							$(set).submit();
+							$('#frm').submit();
 						} else if ($.trim(data) === "fail") {
 							alert("ID/PW가 잘못되었습니다.");
 							self.location = "/board";
