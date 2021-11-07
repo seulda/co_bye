@@ -208,7 +208,7 @@ public class StateServiceImpl implements StateService {
             Connection conn = Jsoup.connect(URL);
             // HTML 파싱
             Document doc = conn.get(); // conn.post();
-            //System.out.println(doc.toString()); 
+            System.out.println("여기가 크롤링 전체 : " + doc.toString()); 
             
     		String toC = "";
             Elements inner_value = doc.getElementsByClass("inner_value");
