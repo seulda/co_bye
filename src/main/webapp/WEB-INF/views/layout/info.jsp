@@ -51,7 +51,7 @@
 									</div>
 									<div class="col pr-0">
 										<span class="h6 mb-0">누적 확진자</span><br>
-										<span class="h3 mb-0">&nbsp;${state.allCnt} 명</span>
+										<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state.allCnt}" pattern="#,###,###" /> 명</span>
 										<%-- <span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${state.allCnt}" pattern="#,###,###" /> 명</span> --%>
 									</div>
 								</div>

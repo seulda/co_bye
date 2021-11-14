@@ -198,30 +198,40 @@ public class StateServiceImpl implements StateService {
 	
 	@Override
 	public ncovVO Crawler() {
+		
 		//String URL = "https://m.news.naver.com/covid19/live.nhn";
 		//String URL = "https://corona-live.com/";
-		String URL = "http://ncov.mohw.go.kr/bdBoardList_Real.do";
+		String URL1 = "http://ncov.mohw.go.kr/bdBoardList_Real.do";
+		String URL2 = "http://ncov.mohw.go.kr/";
+		
 		ncovVO result = new ncovVO();
 		
 		try {
             // Connection 생성
-            Connection conn = Jsoup.connect(URL);
+            Connection conn1 = Jsoup.connect(URL1);
+            Connection conn2 = Jsoup.connect(URL2);
             // HTML 파싱
-            Document doc = conn.get(); // conn.post();
-            System.out.println("여기가 크롤링 전체 : " + doc.toString()); 
+            Document doc1 = conn1.get(); // conn.post();
+            Document doc2 = conn2.get();
+            //System.out.println("여기가 크롤링 전체 : " + doc.toString()); 
             
-    		String toC = "";
-            Elements inner_value = doc.getElementsByClass("inner_value");
-            for( Element elm : inner_value ) {
-            	toC += elm;
+            
+    		String dayCount = "";
+            Elements ds_table = doc1.getElementsByClass("caseTable");
+            for( Element elm : ds_table ) {
+            	dayCount += elm;
             }
-            toC = toC.replace("<p class=\"inner_value\">", "");
-            toC = toC.replace(" ", "");
-            toC = toC.replace(",", "");
-    		String[] cutC = toC.split("</p>");
+            dayCount = dayCount.substring(dayCount.lastIndexOf("일일")+3);
+            dayCount = dayCount.substring(0, dayCount.indexOf("</dd>")-2);
+            dayCount = dayCount.replace("</dt>", "");
+            dayCount = dayCount.replace("<dd class=\"ca_value\">", "");
+            dayCount = dayCount.replace(" ", "");
+            dayCount = dayCount.replace(",", "");
+            dayCount = dayCount.replace("\n", "");
 
+            
     		String toD = "";
-    		Elements t_date = doc.getElementsByClass("t_date");
+    		Elements t_date = doc1.getElementsByClass("t_date");
             for( Element elm : t_date ) {
             	toD += elm;
             }
@@ -230,19 +240,23 @@ public class StateServiceImpl implements StateService {
     		String[] cutD = toD.split("</span>", 2);
     		cutD[0] = cutD[0].replace(".", "월 ") + "일";
             
-            String toAC = "";
-    		Elements ca_value = doc.getElementsByClass("ca_value");
-            for( Element elm : ca_value ) {
-            	toAC += elm;
-            }
-            toAC = toAC.replace("<dd class=\"ca_value\">", "");
-            toAC = toAC.replace(" ", "");
-            toAC = toAC.replace("\n", "");
-    		String[] cutAC = toAC.split("</dd>", 2);
     		
-    		result.setAddCnt(cutC[0]);
+            String allCount = "";
+    		Elements occur_num = doc2.getElementsByClass("occur_num");
+            for( Element elm : occur_num ) {
+            	allCount += elm;
+            }
+            allCount = allCount.substring(allCount.lastIndexOf("(누적)확진")+6);
+            allCount = allCount.substring(0, allCount.indexOf("<a")-2);
+            allCount = allCount.replace("</span>", "");
+            allCount = allCount.replace(" ", "");
+            allCount = allCount.replace(",", "");
+            allCount = allCount.replace("\n", "");
+    		
+    		
+    		result.setAddCnt(dayCount);
             result.setNdate(cutD[0]);
-            result.setAllCnt(cutAC[0]);
+            result.setAllCnt(allCount);
 
         } catch (IOException e) {
             e.printStackTrace();
