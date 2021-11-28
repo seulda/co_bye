@@ -339,7 +339,7 @@ public class StateServiceImpl implements StateService {
 	        list.add(dvo);
 	        count++;
 	    }
-	    System.out.println("DisasterMsg count: " + count);
+//	    System.out.println("DisasterMsg count: " + count);
 		return list;
 	}
 
@@ -363,7 +363,7 @@ public class StateServiceImpl implements StateService {
                 }
         	}
         }
-		System.out.println("!!!!!!! msg count : " + mCnt);
+//		System.out.println("!!!!!!! msg count : " + mCnt);
 		return mCnt;
 	}
 	

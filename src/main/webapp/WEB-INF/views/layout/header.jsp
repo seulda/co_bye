@@ -75,9 +75,9 @@
 						<li class="nav-item w-100"><a class="nav-link" href="/hospital">
 							<i class="fe fe-flag fe-16"></i><span class="ml-3 item-text">선별진료소</span>
 						</a></li>
-						<li class="nav-item w-100"><a class="nav-link" href="/vaccine/vac">
+						<!-- <li class="nav-item w-100"><a class="nav-link" href="/vaccine/vac">
 							<i class="fe fe-map fe-16"></i><span class="ml-3 item-text">예방접종 의료기관</span>
-						</a></li>
+						</a></li> -->
 						<li class="nav-item w-100"><a class="nav-link" href="/beta">
 								<i class="fe fe-activity fe-16"></i><span class="ml-3 item-text">(BETA) 실시간 확진자</span>
 						</a></li>
