@@ -111,7 +111,7 @@ public class asaServiceImpl implements asaService {
 			avo.setDefCnt(iobj.getInt("defCnt"));				// 확진자 수
 			avo.setOverFlowCnt(iobj.getInt("overFlowCnt"));		// 해외 유입 수
 			avo.setLocalOccCnt(iobj.getInt("localOccCnt"));		// 지역 발생 수
-			avo.setIsolIngCnt(iobj.getInt("isolIngCnt"));		// 격리중인 환자 수
+//			avo.setIsolIngCnt(iobj.getInt("isolIngCnt"));		// 격리중인 환자 수
 
 			list.add(avo);
 		}

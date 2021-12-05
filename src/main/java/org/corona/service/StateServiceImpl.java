@@ -149,16 +149,16 @@ public class StateServiceImpl implements StateService {
 	    	svo.setStateTime(iobj.getString("stateTime"));				// 기준시간
 	        svo.setDecideCnt(iobj.getInt("decideCnt"));					// 확진자수
 	        svo.setADecideCnt(iobj.getInt("decideCnt"));
-	        svo.setClearCnt(iobj.getInt("clearCnt"));					// 격리해제수
-	        svo.setExamCnt(iobj.getInt("examCnt"));						// 검사진행수
+//	        svo.setClearCnt(iobj.getInt("clearCnt"));					// 격리해제수
+//	        svo.setExamCnt(iobj.getInt("examCnt"));						// 검사진행수
 	        svo.setDeathCnt(iobj.getInt("deathCnt"));					// 사망자수
 	        svo.setADeathCnt(iobj.getInt("deathCnt"));
-	        svo.setCareCnt(iobj.getInt("careCnt"));						// 치료중환자수
-	        svo.setACareCnt(iobj.getInt("careCnt"));
-	        svo.setResutlNegCnt(iobj.getInt("resutlNegCnt"));			// 결과음성수
-	        svo.setAccExamCnt(iobj.getInt("accExamCnt"));				// 누적검사수
-	        svo.setAccExamCompCnt(iobj.getInt("accExamCompCnt"));		// 누적검사완료수
-	        svo.setAccDefRate(iobj.getFloat("accDefRate"));				// 누적확진률
+//	        svo.setCareCnt(iobj.getInt("careCnt"));						// 치료중환자수
+//	        svo.setACareCnt(iobj.getInt("careCnt"));
+//	        svo.setResutlNegCnt(iobj.getInt("resutlNegCnt"));			// 결과음성수
+	        svo.setAccExamCnt(iobj.getInt("accExamCnt"));				// 누적검사수 -> 누적 의심신고 검사자 수(2021.11.22)
+//	        svo.setAccExamCompCnt(iobj.getInt("accExamCompCnt"));		// 누적검사완료수
+//	        svo.setAccDefRate(iobj.getFloat("accDefRate"));				// 누적확진률
 	        svo.setCreateDt(iobj.getString("createDt"));				// 등록시간
 	        //svo.setUpdateDt(iobj.getString("updateDt"));				// 수정시간
 	        
