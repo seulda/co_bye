@@ -181,7 +181,7 @@ public class StateServiceImpl implements StateService {
 		
 		for(int i = 0; i < list.size()-1; i++) {
 			list.get(i).setADecideCnt(list.get(i).getDecideCnt() - dayList.get(i).getDecideCnt());
-			list.get(i).setACareCnt(list.get(i).getCareCnt() - dayList.get(i).getCareCnt());
+			//list.get(i).setACareCnt(list.get(i).getCareCnt() - dayList.get(i).getCareCnt());
 			list.get(i).setADeathCnt(list.get(i).getDeathCnt() - dayList.get(i).getDeathCnt());
 			
 			date = fmt.parse(list.get(i).getStateDt());

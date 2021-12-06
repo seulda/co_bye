@@ -29,8 +29,6 @@
 										<th style="text-align:center;">기준 일시</th>
 										<th style="text-align:center;">전체 확진자</th>
 										<th style="text-align:center;">전일 대비</th>
-										<th style="text-align:center;">격리중</th>
-										<th style="text-align:center;">격리 해제</th>
 										<th style="text-align:center;">사망자 수</th>
 										<th style="text-align:center;">지역 발생</th>
 										<th style="text-align:center;">해외 유입</th>
@@ -44,19 +42,12 @@
 											<td style="text-align:center;"><fmt:formatDate value="${dateTime}" pattern="MM월 dd일"/></td>
 											<td style="text-align:center;"><fmt:formatNumber value="${alist.defCnt}" pattern="#,###,###" /> 명</td>  <!-- 전체 확진자 -->
 											<td style="text-align:center;">+ <fmt:formatNumber value="${alist.incDec}" pattern="#,###,###" /></td> <!-- 전일 대비 -->
-											<td style="text-align:center;"><fmt:formatNumber value="${alist.isolIngCnt}" pattern="#,###,###" /></td> <!-- 격리중 -->
-											<td style="text-align:center;"><fmt:formatNumber value="${alist.isolClearCnt}" pattern="#,###,###" /></td> <!-- 격리해제 --> 
 											<td style="text-align:center;"><fmt:formatNumber value="${alist.deathCnt}" pattern="#,###,###" /></td>	<!-- 사망자 수  -->
 											<td style="text-align:center;"><fmt:formatNumber value="${alist.localOccCnt}" pattern="#,###,###" /></td><!-- 지역 발생  -->
 											<td style="text-align:center;"><fmt:formatNumber value="${alist.overFlowCnt}" pattern="#,###,###" /></td>	<!-- 해외 유입 -->
 											<input type="hidden" name="gubun" id="gubun" value="${alist.gubun}" />
 											<input type="hidden" name="dateTime" id="dateTime" value="${dateTime}" />
-											<input type="hidden" name="defCnt" id="defCnt" value="${alist.defCnt}" />
 											<input type="hidden" name="incDec" id="incDec" value="${alist.incDec}" />
-											<input type="hidden" name="isolIngCnt" id="isolIngCnt" value="${alist.isolIngCnt}" />
-											<input type="hidden" name="isolClearCnt" id="isolClearCnt" value="${alist.isolClearCnt}" />
-											<input type="hidden" name="deathCnt" id="deathCnt" value="${alist.deathCnt}" />
-											<input type="hidden" name="overFlowCnt" id="overFlowCnt" value="${alist.overFlowCnt}" />
 										</tr>
 									</c:forEach>
 								</tbody>
